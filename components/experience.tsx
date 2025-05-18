@@ -5,7 +5,16 @@ import { Briefcase, Calendar, ChevronDown, ChevronUp, MapPin } from "lucide-reac
 import { useState } from "react"
 import { cn } from "@/lib/utils"
 
-const experiences = [
+// Define the type for an experience object
+type Experience = {
+  title: string
+  company: string
+  location: string
+  period: string
+  responsibilities: string[]
+}
+
+const experiences: Experience[] = [
   {
     title: "Software Development Engineer I",
     company: "JUSPAY",
@@ -108,7 +117,7 @@ export default function Experience() {
   )
 }
 
-function ExperienceCard({ experience }) {
+function ExperienceCard({ experience }: { experience: Experience }) {
   const [isExpanded, setIsExpanded] = useState(false)
 
   return (
