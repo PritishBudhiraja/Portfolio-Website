@@ -9,9 +9,10 @@ export default function About() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
           <div className="h-1 w-20 bg-primary rounded-full mb-8"></div>
           <p className="text-lg text-center max-w-3xl text-muted-foreground">
-            I'm a passionate Software Development Engineer with expertise in building scalable web applications and
-            payment solutions. With a strong foundation in computer science and hands-on experience in various
-            technologies, I strive to create efficient and user-friendly digital experiences.
+            I'm a Senior Software Engineer with expertise in building scalable web applications, AI-powered platforms,
+            and payment solutions. With a strong foundation in computer science and hands-on experience in frontend
+            architecture, cloud infrastructure, and full-stack development, I strive to create efficient and
+            user-friendly digital experiences.
           </p>
         </div>
 
@@ -48,15 +49,15 @@ export default function About() {
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Current Role</h3>
                   <div>
-                    <h4 className="font-medium">Software Development Engineer at JUSPAY</h4>
+                    <h4 className="font-medium">Senior Software Engineer at TestZeus</h4>
                     <p className="text-sm text-muted-foreground">
-                      Leading development of Hyperswitch Web SDK and merchant dashboard
+                      Owning frontend architecture and building AI-powered testing platform
                     </p>
                     <div className="flex justify-between mt-1">
-                      <p className="text-sm">December 2022 - Present</p>
+                      <p className="text-sm">August 2025 - Present</p>
                     </div>
                     <p className="text-sm mt-2">
-                      Working on payment infrastructure, AWS deployments, and frontend optimization
+                      Working on Kubernetes deployments, Composio integrations, usage-based billing, and platform security
                     </p>
                   </div>
                 </div>

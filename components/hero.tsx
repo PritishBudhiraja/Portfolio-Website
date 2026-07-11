@@ -10,10 +10,10 @@ export default function Hero() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
               Hi, I'm <span className="text-primary">Pritish Budhiraja</span>
             </h1>
-            <h2 className="text-2xl md:text-3xl font-medium text-foreground/80">Software Development Engineer</h2>
+            <h2 className="text-2xl md:text-3xl font-medium text-foreground/80">Senior Software Engineer</h2>
             <p className="text-lg text-muted-foreground max-w-xl">
-              Experienced full-stack developer specializing in React, TypeScript, and cloud infrastructure. Currently
-              building scalable payment solutions at JUSPAY.
+              Full-stack engineer specializing in React, TypeScript, and cloud infrastructure. Currently building
+              AI-powered testing platforms at TestZeus, previously shipping payment solutions at Juspay.
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
               <Button asChild>

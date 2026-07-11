@@ -1,96 +1,117 @@
 "use client"
 
 import { Card, CardContent } from "@/components/ui/card"
-import { Briefcase, Calendar, ChevronDown, ChevronUp, MapPin } from "lucide-react"
+import { Calendar, ChevronDown, ChevronUp, MapPin, ExternalLink } from "lucide-react"
 import { useState } from "react"
 import { cn } from "@/lib/utils"
 
-// Define the type for an experience object
-type Experience = {
+type Role = {
   title: string
-  company: string
-  location: string
   period: string
   responsibilities: string[]
 }
 
+type Experience = {
+  company: string
+  companyUrl: string
+  logo: string
+  location: string
+  totalPeriod: string
+  roles: Role[]
+}
+
 const experiences: Experience[] = [
   {
-    title: "Software Development Engineer I",
-    company: "JUSPAY",
+    company: "TestZeus",
+    companyUrl: "https://www.testzeus.com/",
+    logo: "/images/logos/testzeus.png",
     location: "Bangalore",
-    period: "April 2024 - Present",
-    responsibilities: [
-      "Led a team of 5-6 engineers working on Hyperswitch Web SDK, implementing new payment methods and refactoring codebase for scalability.",
-      "Optimized SDK build process and introduced versioning, improving performance metrics and reducing load times by 30%.",
-      "Established complete CI/CD pipeline with Jenkins for automated builds and deployments to AWS S3 with CloudFront integration.",
-      "Gained deep expertise in AWS infrastructure, refining S3 structures to ensure optimal scalability and content delivery.",
-      "Managed all merchant support queries related to Web SDK, delivering requirements on schedule with clear communication.",
-      "Conducted thorough code reviews, enforced best practices, and maintained high code quality standards across the team.",
-      "Successfully onboarded new team members with structured tasks and clear guidance, enhancing team productivity.",
+    totalPeriod: "August 2025 - Present",
+    roles: [
+      {
+        title: "Senior Software Engineer",
+        period: "August 2025 - Present",
+        responsibilities: [
+          "Leading frontend development and architecting next-generation testing automation platforms powered by Agentic AI, spanning UI architecture, performance optimization, and building frameworks that help teams test faster and smarter.",
+          "Owned the frontend architecture end-to-end — from feature-sliced module design to the build and deployment pipeline (Vite, Docker, Kubernetes/GKE) — enabling scalable, reliable delivery as the product grew.",
+          "Built the end-to-end Teach Agent workflow, using Steel Dev (self-hosted browser automation) to record browser sessions and convert them into AI-generated Gherkin scenarios and executable Python tests through asynchronous artifact processing.",
+          "Architected the Composio-based integration service enabling 15+ connected-app integrations across source control and enterprise tools; powers the flow from account connection to knowledge-base creation to AI-generated test cases.",
+          "Implemented usage-based billing and quota enforcement using Flexprice and Redis with real-time event monitoring, per-user usage-metric tracking, pre-execution validation, and quota-exhaustion feedback.",
+          "Strengthened platform security through JWT revocation, tenant-derived authentication, login audit trails, and improved production reliability with deployment health checks, stale-chunk recovery, and Sentry-based observability.",
+        ],
+      },
     ],
   },
   {
-    title: "Associate Software Development Engineer",
     company: "JUSPAY",
+    companyUrl: "https://juspay.in/",
+    logo: "/images/logos/juspay.svg",
     location: "Bangalore",
-    period: "December 2022 - April 2024",
-    responsibilities: [
-      "Built the foundational architecture of Hyperswitch Dashboard from scratch using ReScript and React, supporting integration with 25+ global payment processors.",
-      "Led multiple UI revamps of the merchant-facing dashboard, enabling businesses to configure and manage payment connectors seamlessly.",
-      "Contributed to HyperStudio development, creating flexible layout configurations and UI customization tools for the SDK.",
-      "Designed and developed responsive, reusable UI components in ReScript that ensure consistent experience across devices.",
-      "Implemented state management using Recoil for efficient data flow and optimized application performance.",
+    totalPeriod: "December 2022 - August 2025 · 2 yrs 8 mos",
+    roles: [
+      {
+        title: "Software Development Engineer I",
+        period: "April 2024 - August 2025",
+        responsibilities: [
+          "Led a team of 5-6 engineers working on Hyperswitch Web SDK, implementing new payment methods and refactoring codebase for scalability.",
+          "Expanded Payment Integrations — Implemented support for multiple payment methods, ensuring a seamless checkout experience for merchants across 6+ enterprise integrations.",
+          "Versioning & Build Optimization — Introduced versioning in the SDK, optimized the build process with tree-shaking and lazy-loading, reducing initial load times significantly.",
+          "CI/CD & Deployment Automation — Set up the entire Jenkins pipeline for deployment, enabling automated builds pushed to S3 with CloudFront behavior updates across 3 environments.",
+          "AWS & Scalability — Gained deep insights into AWS dynamics, refining S3 structures and implementing CloudFront Functions for version pinning to ensure safe, predictable rollouts.",
+          "Thorough PR Reviews & Best Practices — Reviewed pull requests efficiently, motivating the team to follow best coding practices and maintaining high-quality standards.",
+          "Onboarding & Mentorship — Successfully onboarded 5 new team members by providing structured tasks, clear guidance, and proper knowledge transfer.",
+        ],
+      },
+      {
+        title: "Associate Software Development Engineer",
+        period: "December 2022 - April 2024",
+        responsibilities: [
+          "Core Member of Hyperswitch Dashboard — Built the Hyperswitch Dashboard from scratch using ReScript and React, leading multiple UI revamps to enhance user experience and performance.",
+          "Merchant Dashboard Development — Designed and developed the merchant-facing dashboard, empowering businesses to configure, enable, and disable 25+ payment connectors seamlessly.",
+          "HyperStudio & UI Customization — Contributed to HyperStudio, enabling flexible layout configurations and UI customization for SDK white-labeling.",
+          "Reusable Components & Responsive UI — Developed multiple reusable UI components and mobile-responsive layouts in ReScript with Recoil-backed state management for predictable performance.",
+        ],
+      },
     ],
   },
   {
-    title: "Software Development Engineer-1",
     company: "ZFunds",
+    companyUrl: "https://zfunds.in/",
+    logo: "/images/logos/zfunds.jpg",
     location: "Gurugram",
-    period: "August 2022 - December 2022",
-    responsibilities: [
-      "Building various Product Based Requirement Changes in the ZFunds Website, Advisor & User App.",
-      "Performed Speed Search Optimisation for the Web Pages.",
-      "Created APIs in Fast API in Python with MongoDB & in Node JS with AWS DynamoDB.",
-      "Created Various Screen & Fixed Bugs in the Existing screens of both Zfunds User App & Advisor App.",
+    totalPeriod: "August 2022 - December 2022 · 5 mos",
+    roles: [
+      {
+        title: "Software Development Engineer",
+        period: "August 2022 - December 2022",
+        responsibilities: [
+          "Enhanced User & Advisor Experiences — Played a key role in improving both the User and Advisor applications, along with the ZFunds Web Application, by developing new features and optimizing workflows.",
+          "Feature Development — Designed and implemented core functionalities including Health Insurance and Fixed Deposits modules for the Advisor App, enabling advisors to offer diverse financial products efficiently.",
+          "Cart Flow Optimization — Revamped and optimized the cart flow for both User and Advisor applications, ensuring a seamless and intuitive checkout experience.",
+          "Backend API Development — Built robust APIs using FastAPI and Node.js with DynamoDB and MongoDB, ensuring efficient data fetching and real-time interactions.",
+        ],
+      },
     ],
   },
   {
-    title: "Software Engineer Intern",
-    company: "Highradius Technologies",
+    company: "HighRadius Technologies",
+    companyUrl: "https://www.highradius.com/",
+    logo: "/images/logos/highradius.png",
     location: "Remote",
-    period: "June 2021 - July 2022",
-    responsibilities: [
-      "Built various Client Based Requirement Applications for the Autonomous Collections Team.",
-      "Build React Components from Scratch worked on various screens and implementation.",
-      "Build Backend APIs in Java Servlets, Struts, Hibernate, and Spring framework.",
-      "Performed full life cycle of a User story: Documentation, Building the components, Writing Unit Test Cases.",
-      "Performed Regression Testing and Peer Testing apart from the Development part.",
-      "Learnt about the CI/CD process & Agents.",
-      "Managed, Guided, and Led New Interns in their Winter Intern Training phase as a POD Lead. Helped and guided in both their Front-end and Back-end.",
-    ],
-  },
-  {
-    title: "Software Engineer Intern",
-    company: "Highradius Technologies",
-    location: "Remote",
-    period: "April 2021 - May 2021",
-    responsibilities: [
-      "Built an Autonomous Call Work board: This is used to help the B2B companies to track and Analyze when the Payment of their Due Amount will be paid and how much delay will be there in a graphical manner.",
-      "Performed the Create, Read, Update, Delete, Analysis with Highcharts & Search functionality (Debouncing) with all edge case Error Handling with Loading Skeletons.",
-      "Technologies: MYSQL, Java Servlets, Java Hibernate, Spring MVC, React-JS, Material-UI, Redux, Redux Sagas, Highcharts.",
-    ],
-  },
-  {
-    title: "Software Engineer Intern (Part-time)",
-    company: "Highradius Technologies",
-    location: "Remote",
-    period: "January 2021 - March 2021",
-    responsibilities: [
-      "Built an AI-Enabled Fin-tech Bill Management Application: This is used to help B2B companies to track and predict the payment of their Due Amount by Sellers.",
-      "Made a prediction model and packetization strategy for power prediction.",
-      "Wrote APIs for CRUD and Search along with UI: including debounced search, Skeletons.",
-      "Technologies: Python (AI/ML), Java Servlets, MySQL, ReactJS, Material-UI, Redux.",
+    totalPeriod: "January 2021 - July 2022 · 1 yr 7 mos",
+    roles: [
+      {
+        title: "Software Engineer Intern",
+        period: "January 2021 - July 2022",
+        responsibilities: [
+          "Full Stack Developer on Autonomous Collections Team — Designed and built multiple custom applications tailored to client requirements for automated collections workflows.",
+          "Built the Autonomous Call Workboard — Designed a workboard for B2B companies to track and analyze payment timelines using interactive graphical representations with Highcharts.",
+          "AI-Enabled Bill Management System — Built a smart financial application using Python (Scikit-learn) and Flask to help B2B fintech firms automate bill tracking with AI-driven predictions.",
+          "Backend Development — Built RESTful APIs using Java (Struts, Spring, Hibernate) and Python (Flask), ensuring efficient data management and seamless service communication.",
+          "Frontend Development — Developed React components with Material-UI and Redux from scratch, implementing debounced search, loading skeletons, and comprehensive error handling.",
+          "Mentorship & Leadership — Led and mentored new interns during their Winter Intern Training Phase as a POD Lead, guiding them in both frontend and backend development.",
+        ],
+      },
     ],
   },
 ]
@@ -103,7 +124,7 @@ export default function Experience() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Experience</h2>
           <div className="h-1 w-20 bg-primary rounded-full mb-8"></div>
           <p className="text-lg text-center max-w-3xl text-muted-foreground">
-            My professional journey as a software developer, from internships to leading development teams.
+            My professional journey as a software engineer, from internships to leading development teams.
           </p>
         </div>
 
@@ -119,26 +140,62 @@ export default function Experience() {
 
 function ExperienceCard({ experience }: { experience: Experience }) {
   const [isExpanded, setIsExpanded] = useState(false)
+  const hasMultipleRoles = experience.roles.length > 1
 
   return (
     <Card className="border-none shadow-md hover:shadow-lg transition-shadow overflow-hidden">
       <CardContent className="p-0">
         <div className="p-6 cursor-pointer" onClick={() => setIsExpanded(!isExpanded)}>
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div>
-              <h3 className="text-xl font-semibold">{experience.title}</h3>
-              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mt-1">
-                <div className="flex items-center text-primary">
-                  <Briefcase className="h-4 w-4 mr-1" />
-                  <span>{experience.company}</span>
+            <div className="flex items-start gap-4">
+              <a
+                href={experience.companyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="flex-shrink-0 hidden sm:block"
+              >
+                <div className="w-14 h-14 rounded-xl bg-white border border-border/50 p-2 hover:border-primary/50 transition-colors overflow-hidden flex items-center justify-center shadow-sm">
+                  <img
+                    src={experience.logo}
+                    alt={`${experience.company} logo`}
+                    className="w-full h-full object-contain"
+                    onError={(e) => {
+                      e.currentTarget.style.display = "none"
+                    }}
+                  />
                 </div>
-                <div className="flex items-center text-muted-foreground">
-                  <MapPin className="h-4 w-4 mr-1" />
-                  <span>{experience.location}</span>
+              </a>
+              <div className="flex-1">
+                <div className="flex items-center gap-2">
+                  <a
+                    href={experience.companyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="text-xl font-semibold text-primary hover:underline group flex items-center gap-1"
+                  >
+                    {experience.company}
+                    <ExternalLink className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </a>
                 </div>
-                <div className="flex items-center text-muted-foreground">
-                  <Calendar className="h-4 w-4 mr-1" />
-                  <span>{experience.period}</span>
+                {!hasMultipleRoles && (
+                  <h3 className="text-lg font-medium mt-0.5">{experience.roles[0].title}</h3>
+                )}
+                {hasMultipleRoles && (
+                  <p className="text-sm text-muted-foreground mt-0.5">
+                    {experience.roles.length} roles
+                  </p>
+                )}
+                <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 mt-2 text-sm">
+                  <div className="flex items-center text-muted-foreground">
+                    <MapPin className="h-4 w-4 mr-1" />
+                    <span>{experience.location}</span>
+                  </div>
+                  <div className="flex items-center text-muted-foreground">
+                    <Calendar className="h-4 w-4 mr-1" />
+                    <span>{experience.totalPeriod}</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -153,15 +210,39 @@ function ExperienceCard({ experience }: { experience: Experience }) {
 
         <div
           className={cn(
-            "px-6 overflow-hidden transition-all duration-300 ease-in-out",
-            isExpanded ? "max-h-[1000px] pb-6" : "max-h-0",
+            "overflow-hidden transition-all duration-300 ease-in-out",
+            isExpanded ? "max-h-[3000px]" : "max-h-0"
           )}
         >
-          <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
-            {experience.responsibilities.map((resp, idx) => (
-              <li key={idx}>{resp}</li>
+          <div className="px-6 pb-6 pt-2 sm:pl-24 border-t border-border/30">
+            {experience.roles.map((role, roleIdx) => (
+              <div
+                key={roleIdx}
+                className={cn(
+                  "relative",
+                  hasMultipleRoles && "pl-6 border-l-2 border-primary/30",
+                  roleIdx > 0 && "mt-8 pt-2"
+                )}
+              >
+                {hasMultipleRoles && (
+                  <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary border-4 border-background" />
+                )}
+                <div className={cn(hasMultipleRoles ? "pl-4" : "")}>
+                  {(hasMultipleRoles || roleIdx > 0) && (
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-4">
+                      <h4 className="font-semibold text-foreground text-base">{role.title}</h4>
+                      <span className="text-sm text-muted-foreground">{role.period}</span>
+                    </div>
+                  )}
+                  <ul className="list-disc pl-5 space-y-3 text-muted-foreground text-sm leading-relaxed">
+                    {role.responsibilities.map((resp, idx) => (
+                      <li key={idx}>{resp}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       </CardContent>
     </Card>

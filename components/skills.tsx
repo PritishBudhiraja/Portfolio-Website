@@ -6,31 +6,22 @@ const skillsData = [
   {
     category: "Languages",
     icon: Code,
-    skills: ["JavaScript", "TypeScript", "Python", "SQL", "Java", "C++"],
+    skills: ["TypeScript", "JavaScript", "ReScript", "Python", "SQL"],
   },
   {
-    category: "Frontend",
+    category: "Frontend Engineering",
     icon: Globe,
-    skills: ["React.js", "React Native", "Next.js", "Rescript", "Recoil", "Redux", "Material UI"],
+    skills: ["React", "Component Architecture", "State Management", "Bundle Optimization", "Performance Optimization"],
   },
   {
-    category: "Backend",
-    icon: Database,
-    skills: ["Node.js", "RESTful APIs", "Fast API", "MongoDB", "MySQL", "AWS DynamoDB"],
-  },
-  {
-    category: "Tools & Technologies",
+    category: "Infra & Delivery",
     icon: Wrench,
-    skills: [
-      "Git",
-      "Jira",
-      "CI/CD",
-      "Responsive Design",
-      "Payment Gateway Integration",
-      "AWS (S3, CloudFront)",
-      "Jenkins",
-      "Webpack",
-    ],
+    skills: ["Docker", "Kubernetes", "CI/CD (Jenkins)", "AWS (S3/CloudFront)", "Vite", "Webpack", "GitHub Actions"],
+  },
+  {
+    category: "Backend & Data",
+    icon: Database,
+    skills: ["Node.js", "REST APIs", "FastAPI", "MongoDB", "MySQL", "DynamoDB"],
   },
 ]
 
