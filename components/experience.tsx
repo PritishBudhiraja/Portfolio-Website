@@ -1,9 +1,13 @@
 "use client"
 
+import { motion, AnimatePresence, useInView } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 import { Calendar, ChevronDown, ChevronUp, MapPin, ExternalLink } from "lucide-react"
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { cn } from "@/lib/utils"
+import { FadeIn } from "@/components/motion/fade-in"
+import { StaggerContainer, StaggerItem } from "@/components/motion/stagger-container"
+import { AnimatedUnderline } from "@/components/motion/animated-underline"
 
 type Role = {
   title: string
@@ -116,135 +120,199 @@ const experiences: Experience[] = [
   },
 ]
 
+function TimelineDot({ isInView, delay }: { isInView: boolean; delay: number }) {
+  return (
+    <motion.div
+      className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary border-4 border-background"
+      initial={{ scale: 0 }}
+      animate={isInView ? { scale: 1 } : { scale: 0 }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        damping: 20,
+        delay,
+      }}
+    />
+  )
+}
+
+function ExperienceCard({ experience, index }: { experience: Experience; index: number }) {
+  const [isExpanded, setIsExpanded] = useState(false)
+  const hasMultipleRoles = experience.roles.length > 1
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true, amount: 0.2 })
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      transition={{
+        duration: 0.6,
+        delay: index * 0.1,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+    >
+      <Card className="border-none shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
+        <CardContent className="p-0">
+          <motion.div
+            className="p-6 md:p-8 cursor-pointer"
+            onClick={() => setIsExpanded(!isExpanded)}
+            whileHover={{ backgroundColor: "hsl(var(--muted) / 0.3)" }}
+            transition={{ duration: 0.2 }}
+          >
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div className="flex items-start gap-4 md:gap-6">
+                <a
+                  href={experience.companyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="flex-shrink-0 hidden sm:block"
+                >
+                  <motion.div
+                    className="w-16 h-16 rounded-2xl bg-white border border-border/50 p-2.5 hover:border-primary/50 transition-colors overflow-hidden flex items-center justify-center shadow-sm"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <img
+                      src={experience.logo}
+                      alt={`${experience.company} logo`}
+                      className="w-full h-full object-contain"
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none"
+                      }}
+                    />
+                  </motion.div>
+                </a>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <a
+                      href={experience.companyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="text-xl md:text-2xl font-display font-semibold text-primary hover:underline group flex items-center gap-2"
+                    >
+                      {experience.company}
+                      <ExternalLink className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </a>
+                  </div>
+                  {!hasMultipleRoles && (
+                    <h3 className="text-lg font-medium mt-1">{experience.roles[0].title}</h3>
+                  )}
+                  {hasMultipleRoles && (
+                    <p className="text-sm text-muted-foreground mt-1 font-medium">
+                      {experience.roles.length} roles
+                    </p>
+                  )}
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mt-3 text-sm">
+                    <div className="flex items-center text-muted-foreground">
+                      <MapPin className="h-4 w-4 mr-1.5" />
+                      <span>{experience.location}</span>
+                    </div>
+                    <div className="flex items-center text-muted-foreground">
+                      <Calendar className="h-4 w-4 mr-1.5" />
+                      <span>{experience.totalPeriod}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <motion.button
+                className="self-end md:self-center p-2 rounded-full hover:bg-muted transition-colors"
+                aria-label={isExpanded ? "Collapse" : "Expand"}
+                animate={{ rotate: isExpanded ? 180 : 0 }}
+                transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              >
+                <ChevronDown className="h-5 w-5 text-muted-foreground" />
+              </motion.button>
+            </div>
+          </motion.div>
+
+          <AnimatePresence>
+            {isExpanded && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{
+                  height: { type: "spring", stiffness: 300, damping: 30 },
+                  opacity: { duration: 0.2 },
+                }}
+                className="overflow-hidden"
+              >
+                <div className="px-6 md:px-8 pb-8 pt-2 sm:pl-28 border-t border-border/30">
+                  {experience.roles.map((role, roleIdx) => (
+                    <motion.div
+                      key={roleIdx}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: roleIdx * 0.1 }}
+                      className={cn(
+                        "relative",
+                        hasMultipleRoles && "pl-6 border-l-2 border-primary/30",
+                        roleIdx > 0 && "mt-8 pt-2"
+                      )}
+                    >
+                      {hasMultipleRoles && <TimelineDot isInView={true} delay={roleIdx * 0.1} />}
+                      <div className={cn(hasMultipleRoles ? "pl-4" : "")}>
+                        {(hasMultipleRoles || roleIdx > 0) && (
+                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-4">
+                            <h4 className="font-display font-semibold text-foreground text-base">
+                              {role.title}
+                            </h4>
+                            <span className="text-sm text-muted-foreground">{role.period}</span>
+                          </div>
+                        )}
+                        <ul className="space-y-3">
+                          {role.responsibilities.map((resp, idx) => (
+                            <motion.li
+                              key={idx}
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: 0.1 + idx * 0.05 }}
+                              className="flex gap-3 text-muted-foreground text-sm leading-relaxed"
+                            >
+                              <span className="text-primary mt-1.5 flex-shrink-0">•</span>
+                              <span>{resp}</span>
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </CardContent>
+      </Card>
+    </motion.div>
+  )
+}
+
 export default function Experience() {
   return (
-    <section id="experience" className="py-20 bg-muted/30">
+    <section id="experience" className="py-24 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col items-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Experience</h2>
-          <div className="h-1 w-20 bg-primary rounded-full mb-8"></div>
-          <p className="text-lg text-center max-w-3xl text-muted-foreground">
-            My professional journey as a software engineer, from internships to leading development teams.
-          </p>
+        <div className="flex flex-col items-center mb-16">
+          <FadeIn>
+            <h2 className="text-display-md font-display font-bold mb-4 text-center">Experience</h2>
+          </FadeIn>
+          <AnimatedUnderline className="mb-8" />
+          <FadeIn delay={0.2}>
+            <p className="text-lg md:text-xl text-center max-w-3xl text-muted-foreground leading-relaxed">
+              My professional journey as a software engineer, from internships to leading development teams.
+            </p>
+          </FadeIn>
         </div>
 
-        <div className="space-y-6 mt-8">
+        <div className="space-y-6 mt-8 max-w-4xl mx-auto">
           {experiences.map((exp, index) => (
-            <ExperienceCard key={index} experience={exp} />
+            <ExperienceCard key={index} experience={exp} index={index} />
           ))}
         </div>
       </div>
     </section>
-  )
-}
-
-function ExperienceCard({ experience }: { experience: Experience }) {
-  const [isExpanded, setIsExpanded] = useState(false)
-  const hasMultipleRoles = experience.roles.length > 1
-
-  return (
-    <Card className="border-none shadow-md hover:shadow-lg transition-shadow overflow-hidden">
-      <CardContent className="p-0">
-        <div className="p-6 cursor-pointer" onClick={() => setIsExpanded(!isExpanded)}>
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div className="flex items-start gap-4">
-              <a
-                href={experience.companyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="flex-shrink-0 hidden sm:block"
-              >
-                <div className="w-14 h-14 rounded-xl bg-white border border-border/50 p-2 hover:border-primary/50 transition-colors overflow-hidden flex items-center justify-center shadow-sm">
-                  <img
-                    src={experience.logo}
-                    alt={`${experience.company} logo`}
-                    className="w-full h-full object-contain"
-                    onError={(e) => {
-                      e.currentTarget.style.display = "none"
-                    }}
-                  />
-                </div>
-              </a>
-              <div className="flex-1">
-                <div className="flex items-center gap-2">
-                  <a
-                    href={experience.companyUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="text-xl font-semibold text-primary hover:underline group flex items-center gap-1"
-                  >
-                    {experience.company}
-                    <ExternalLink className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </a>
-                </div>
-                {!hasMultipleRoles && (
-                  <h3 className="text-lg font-medium mt-0.5">{experience.roles[0].title}</h3>
-                )}
-                {hasMultipleRoles && (
-                  <p className="text-sm text-muted-foreground mt-0.5">
-                    {experience.roles.length} roles
-                  </p>
-                )}
-                <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 mt-2 text-sm">
-                  <div className="flex items-center text-muted-foreground">
-                    <MapPin className="h-4 w-4 mr-1" />
-                    <span>{experience.location}</span>
-                  </div>
-                  <div className="flex items-center text-muted-foreground">
-                    <Calendar className="h-4 w-4 mr-1" />
-                    <span>{experience.totalPeriod}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <button
-              className="self-end md:self-center text-muted-foreground hover:text-primary transition-colors"
-              aria-label={isExpanded ? "Collapse" : "Expand"}
-            >
-              {isExpanded ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
-            </button>
-          </div>
-        </div>
-
-        <div
-          className={cn(
-            "overflow-hidden transition-all duration-300 ease-in-out",
-            isExpanded ? "max-h-[3000px]" : "max-h-0"
-          )}
-        >
-          <div className="px-6 pb-6 pt-2 sm:pl-24 border-t border-border/30">
-            {experience.roles.map((role, roleIdx) => (
-              <div
-                key={roleIdx}
-                className={cn(
-                  "relative",
-                  hasMultipleRoles && "pl-6 border-l-2 border-primary/30",
-                  roleIdx > 0 && "mt-8 pt-2"
-                )}
-              >
-                {hasMultipleRoles && (
-                  <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary border-4 border-background" />
-                )}
-                <div className={cn(hasMultipleRoles ? "pl-4" : "")}>
-                  {(hasMultipleRoles || roleIdx > 0) && (
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-4">
-                      <h4 className="font-semibold text-foreground text-base">{role.title}</h4>
-                      <span className="text-sm text-muted-foreground">{role.period}</span>
-                    </div>
-                  )}
-                  <ul className="list-disc pl-5 space-y-3 text-muted-foreground text-sm leading-relaxed">
-                    {role.responsibilities.map((resp, idx) => (
-                      <li key={idx}>{resp}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </CardContent>
-    </Card>
   )
 }
