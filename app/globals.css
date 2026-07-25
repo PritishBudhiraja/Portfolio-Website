@@ -22,9 +22,29 @@
   isolation: auto;
 }
 
-/* Ensure proper stacking during transition */
-html:active-view-transition-type(root) {
-  view-transition-name: none;
+/* Gradient heading gets its own smooth crossfade transition */
+::view-transition-old(gradient-heading),
+::view-transition-new(gradient-heading) {
+  animation-duration: 0.4s;
+  animation-timing-function: ease-in-out;
+}
+
+::view-transition-old(gradient-heading) {
+  animation-name: fade-out;
+}
+
+::view-transition-new(gradient-heading) {
+  animation-name: fade-in;
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @layer base {
@@ -116,14 +136,15 @@ html:active-view-transition-type(root) {
   }
 
   .gradient-heading {
-    background: linear-gradient(135deg, #1a1a2e 0%, #6b7280 100%);
+    background: linear-gradient(135deg, #0f172a 0%, #475569 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    view-transition-name: gradient-heading;
   }
 
   .dark .gradient-heading {
-    background: linear-gradient(135deg, #fff 0%, #a0a0a0 100%);
+    background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

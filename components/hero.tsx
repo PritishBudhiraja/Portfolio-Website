@@ -29,12 +29,12 @@ export default function Hero() {
             <div className="space-y-4">
               <SectionLabel>Software Engineer</SectionLabel>
 
-              <div className="overflow-hidden">
+              <div className="overflow-hidden pb-2">
                 <TextReveal
                   as="h1"
-                  className="text-hero font-display font-semibold gradient-heading"
+                  className="text-hero font-serif font-medium tracking-tight"
                   delay={0.2}
-                  wordDelay={0.08}
+                  letterDelay={0.03}
                 >
                   Hi, I'm Pritish Budhiraja
                 </TextReveal>
