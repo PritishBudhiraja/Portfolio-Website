@@ -22,9 +22,12 @@ module.exports = {
         display: ["var(--font-display)", "system-ui", "sans-serif"],
       },
       fontSize: {
-        "display-xl": ["clamp(3rem, 8vw, 6rem)", { lineHeight: "1.05", letterSpacing: "-0.02em" }],
-        "display-lg": ["clamp(2.5rem, 6vw, 4.5rem)", { lineHeight: "1.1", letterSpacing: "-0.02em" }],
-        "display-md": ["clamp(2rem, 4vw, 3rem)", { lineHeight: "1.15", letterSpacing: "-0.01em" }],
+        "hero": ["clamp(3.5rem, 10vw, 5.5rem)", { lineHeight: "1.0", letterSpacing: "-0.03em", fontWeight: "600" }],
+        "section": ["clamp(2rem, 5vw, 3.5rem)", { lineHeight: "1.1", letterSpacing: "-0.02em" }],
+        "subsection": ["clamp(1.25rem, 3vw, 1.75rem)", { lineHeight: "1.3", letterSpacing: "-0.01em" }],
+        "display-xl": ["clamp(3.5rem, 10vw, 6.5rem)", { lineHeight: "1.0", letterSpacing: "-0.03em" }],
+        "display-lg": ["clamp(2.5rem, 6vw, 4.5rem)", { lineHeight: "1.05", letterSpacing: "-0.03em" }],
+        "display-md": ["clamp(2rem, 4vw, 3rem)", { lineHeight: "1.1", letterSpacing: "-0.02em" }],
         "display-sm": ["clamp(1.5rem, 3vw, 2rem)", { lineHeight: "1.2", letterSpacing: "-0.01em" }],
       },
       colors: {

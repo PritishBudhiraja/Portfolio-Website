@@ -5,7 +5,7 @@ import { useRef } from "react"
 import { Card } from "@/components/ui/card"
 import { Mail, Phone, MapPin, ExternalLink } from "lucide-react"
 import { FadeIn } from "@/components/motion/fade-in"
-import { AnimatedUnderline } from "@/components/motion/animated-underline"
+import { SectionLabel } from "@/components/ui/section-label"
 import { OriginButton, OriginButtonOutline } from "@/components/ui/origin-button"
 
 const LinkedinIcon = ({ className }: { className?: string }) => (
@@ -54,10 +54,10 @@ export default function Contact() {
 
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center mb-16">
+          <SectionLabel>Let's Connect</SectionLabel>
           <FadeIn>
-            <h2 className="text-display-md font-display font-bold mb-4 text-center">Get In Touch</h2>
+            <h2 className="text-section font-display font-bold mb-6 text-center">Get In Touch</h2>
           </FadeIn>
-          <AnimatedUnderline className="mb-8" />
           <FadeIn delay={0.2}>
             <p className="text-lg md:text-xl text-center max-w-3xl text-muted-foreground leading-relaxed">
               Feel free to reach out to me for any inquiries, opportunities, or just to say hello!

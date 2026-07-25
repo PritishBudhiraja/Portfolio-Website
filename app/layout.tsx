@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter, Space_Grotesk } from "next/font/google"
+import { Inter, Instrument_Sans } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
@@ -12,9 +12,10 @@ const inter = Inter({
   variable: "--font-inter",
 })
 
-const spaceGrotesk = Space_Grotesk({
+const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
   variable: "--font-display",
+  weight: ["400", "500", "600", "700"],
 })
 
 export const metadata: Metadata = {
@@ -31,8 +32,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+      <body className={`${inter.variable} ${instrumentSans.variable} font-sans`}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <SmoothScrollProvider>
             <ScrollProgress />
             {children}

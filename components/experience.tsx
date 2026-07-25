@@ -6,8 +6,7 @@ import { Calendar, ChevronDown, ChevronUp, MapPin, ExternalLink } from "lucide-r
 import { useState, useRef } from "react"
 import { cn } from "@/lib/utils"
 import { FadeIn } from "@/components/motion/fade-in"
-import { StaggerContainer, StaggerItem } from "@/components/motion/stagger-container"
-import { AnimatedUnderline } from "@/components/motion/animated-underline"
+import { SectionLabel } from "@/components/ui/section-label"
 
 type Role = {
   title: string
@@ -296,10 +295,10 @@ export default function Experience() {
     <section id="experience" className="py-24 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center mb-16">
+          <SectionLabel>Career Journey</SectionLabel>
           <FadeIn>
-            <h2 className="text-display-md font-display font-bold mb-4 text-center">Experience</h2>
+            <h2 className="text-section font-display font-bold mb-6 text-center">Work Experience</h2>
           </FadeIn>
-          <AnimatedUnderline className="mb-8" />
           <FadeIn delay={0.2}>
             <p className="text-lg md:text-xl text-center max-w-3xl text-muted-foreground leading-relaxed">
               My professional journey as a software engineer, from internships to leading development teams.

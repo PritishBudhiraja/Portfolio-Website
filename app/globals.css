@@ -2,6 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+/* View Transition API - Circular Reveal Theme Toggle */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 2147483647;
+}
+
+/* Disable default animations */
+::view-transition-image-pair(root) {
+  isolation: auto;
+}
+
+/* Ensure proper stacking during transition */
+html:active-view-transition-type(root) {
+  view-transition-name: none;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -27,25 +52,25 @@
   }
 
   .dark {
-    --background: 222 47% 6%;
+    --background: 222 47% 4%;
     --foreground: 210 40% 98%;
-    --card: 222 47% 8%;
+    --card: 222 47% 7%;
     --card-foreground: 210 40% 98%;
-    --popover: 222 47% 8%;
+    --popover: 222 47% 7%;
     --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222 47% 6%;
-    --secondary: 217 33% 17%;
+    --primary: 230 80% 65%;
+    --primary-foreground: 222 47% 4%;
+    --secondary: 220 30% 12%;
     --secondary-foreground: 210 40% 98%;
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 217 33% 17%;
+    --muted: 220 30% 12%;
+    --muted-foreground: 220 15% 55%;
+    --accent: 220 30% 12%;
     --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 217.2 91.2% 59.8%;
+    --border: 220 30% 14%;
+    --input: 220 30% 14%;
+    --ring: 230 80% 65%;
   }
 }
 
@@ -77,8 +102,31 @@
   }
 
   .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary/80 to-primary;
-    background-size: 200% auto;
+    @apply bg-clip-text text-transparent;
+    background: linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--muted-foreground)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .gradient-text-primary {
+    @apply bg-clip-text text-transparent;
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.7) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .gradient-heading {
+    background: linear-gradient(135deg, #1a1a2e 0%, #6b7280 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .dark .gradient-heading {
+    background: linear-gradient(135deg, #fff 0%, #a0a0a0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .card-hover {
@@ -91,6 +139,27 @@
 
   .bg-gradient-radial {
     background: radial-gradient(var(--tw-gradient-stops));
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .glass-card-light {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .grid-background {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
   }
 }
 

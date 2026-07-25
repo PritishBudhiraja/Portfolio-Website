@@ -6,6 +6,7 @@ import { TextReveal } from "@/components/motion/text-reveal"
 import { FadeIn } from "@/components/motion/fade-in"
 import { StaggerContainer, StaggerItem } from "@/components/motion/stagger-container"
 import { OriginButton, OriginButtonOutline } from "@/components/ui/origin-button"
+import { SectionLabel } from "@/components/ui/section-label"
 
 const LinkedinIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -21,21 +22,17 @@ const GithubIcon = ({ className }: { className?: string }) => (
 
 export default function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-20 pb-20 md:pt-0 md:pb-0 overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center pt-20 pb-20 md:pt-0 md:pb-0 overflow-hidden grid-background">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-12 md:gap-8">
           <div className="w-full md:w-3/5 space-y-8">
             <div className="space-y-4">
-              <FadeIn delay={0.1}>
-                <span className="inline-block text-primary font-medium tracking-wide uppercase text-sm">
-                  Welcome to my portfolio
-                </span>
-              </FadeIn>
+              <SectionLabel>Software Engineer</SectionLabel>
 
               <div className="overflow-hidden">
                 <TextReveal
                   as="h1"
-                  className="text-display-xl font-display font-bold"
+                  className="text-hero font-display font-semibold gradient-heading"
                   delay={0.2}
                   wordDelay={0.08}
                 >
@@ -44,8 +41,8 @@ export default function Hero() {
               </div>
 
               <FadeIn delay={0.6} direction="up">
-                <h2 className="text-display-sm font-display font-medium text-foreground/80">
-                  Senior Software Engineer
+                <h2 className="text-subsection font-display font-medium text-foreground/70">
+                  Building scalable products with modern web technologies
                 </h2>
               </FadeIn>
             </div>
