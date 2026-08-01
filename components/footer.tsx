@@ -50,7 +50,7 @@ export default function Footer() {
         >
           <div className="text-center md:text-left">
             <p className="text-xl font-display font-bold">
-              Pritish<span className="text-primary">.dev</span>
+              Pritish <span className="text-primary">Budhiraja</span>
             </p>
             <p className="text-sm text-muted-foreground mt-1">Senior Software Engineer</p>
           </div>

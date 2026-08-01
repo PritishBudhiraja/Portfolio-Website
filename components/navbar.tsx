@@ -64,7 +64,7 @@ export default function Navbar() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          Pritish<span className="text-primary">.dev</span>
+          Pritish <span className="text-primary">Budhiraja</span>
         </motion.a>
 
         <nav className="hidden md:flex items-center space-x-1">
