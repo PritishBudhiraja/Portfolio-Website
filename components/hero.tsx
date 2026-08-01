@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowRight, Mail } from "lucide-react"
+import { ArrowRight, FileText, Mail } from "lucide-react"
 import { TextReveal } from "@/components/motion/text-reveal"
 import { FadeIn } from "@/components/motion/fade-in"
 import { StaggerContainer, StaggerItem } from "@/components/motion/stagger-container"
@@ -60,6 +60,9 @@ export default function Hero() {
                 <OriginButton href="#contact">
                   Contact Me <ArrowRight className="h-5 w-5" />
                 </OriginButton>
+                <OriginButtonOutline href="/resume">
+                  View Resume <FileText className="h-5 w-5" />
+                </OriginButtonOutline>
                 <OriginButtonOutline href="#experience">
                   View Experience
                 </OriginButtonOutline>

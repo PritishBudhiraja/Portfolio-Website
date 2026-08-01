@@ -8,11 +8,12 @@ import { ThemeToggle } from "./theme-toggle"
 import { cn } from "@/lib/utils"
 
 const navItems = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
-  { name: "Experience", href: "#experience" },
-  { name: "Contact", href: "#contact" },
+  { name: "Home", href: "/#home" },
+  { name: "About", href: "/#about" },
+  { name: "Skills", href: "/#skills" },
+  { name: "Experience", href: "/#experience" },
+  { name: "Contact", href: "/#contact" },
+  { name: "Resume", href: "/resume" },
 ]
 
 export default function Navbar() {
@@ -58,7 +59,7 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <motion.a
-          href="#home"
+          href="/"
           className="text-2xl font-display font-bold"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
