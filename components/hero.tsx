@@ -116,11 +116,11 @@ export default function Hero() {
               >
                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 via-primary/10 to-transparent animate-glow-pulse" />
                 <div className="absolute inset-4 rounded-full bg-gradient-to-tr from-primary/15 to-transparent" />
-                <div className="absolute inset-8 rounded-full overflow-hidden bg-background border-2 border-primary/30 shadow-2xl shadow-primary/20">
+                <div className="absolute inset-8 rounded-full overflow-hidden bg-slate-100 dark:bg-black border-2 border-primary/30 shadow-2xl shadow-primary/20">
                   <img
                     src="/images/profile.png"
                     alt="Pritish Budhiraja"
-                    className="w-full h-full object-cover object-top"
+                    className="w-full h-full object-cover object-top scale-105"
                   />
                 </div>
               </motion.div>
