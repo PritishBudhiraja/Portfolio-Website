@@ -83,7 +83,7 @@ export default function Footer() {
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           <p className="text-sm text-muted-foreground">
-            © {currentYear} Pritish Budhiraja. Built with Next.js & Framer Motion.
+            © {currentYear} Pritish Budhiraja.
           </p>
         </motion.div>
       </div>
