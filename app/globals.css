@@ -193,3 +193,50 @@
     @apply text-lg md:text-xl text-center max-w-3xl text-muted-foreground leading-relaxed;
   }
 }
+
+/* Resume page — same tokens as the rest of the site */
+.resume-page {
+  --resume-page-bg: hsl(var(--background));
+  --resume-paper: hsl(var(--card));
+  --resume-header-bg: hsl(var(--muted) / 0.45);
+  --resume-text: hsl(var(--foreground));
+  --resume-text-medium: hsl(var(--muted-foreground));
+  --resume-text-light: hsl(var(--muted-foreground));
+  --resume-link: hsl(var(--primary));
+  --resume-section: hsl(var(--primary));
+  --resume-divider: hsl(var(--border));
+}
+
+.resume-section-title {
+  font-family: var(--font-resume), system-ui, sans-serif;
+  letter-spacing: 0.01em;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+@media print {
+  .resume-page {
+    background: #ffffff !important;
+  }
+
+  .resume-page main {
+    padding: 0 !important;
+  }
+
+  .resume-document {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    max-width: none !important;
+  }
+
+  .resume-actions,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

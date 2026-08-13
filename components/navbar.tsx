@@ -1,6 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
@@ -17,10 +19,15 @@ const navItems = [
 ]
 
 export default function Navbar() {
+  const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const [hidden, setHidden] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const { scrollY } = useScroll()
+
+  useEffect(() => {
+    router.prefetch("/resume")
+  }, [router])
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0
@@ -70,18 +77,22 @@ export default function Navbar() {
 
         <nav className="hidden md:flex items-center space-x-1">
           {navItems.map((item, index) => (
-            <motion.a
+            <motion.div
               key={item.name}
-              href={item.href}
-              className="relative px-4 py-2 text-foreground/70 hover:text-foreground transition-colors duration-300 text-sm font-medium"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 + index * 0.05 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {item.name}
-            </motion.a>
+              <Link
+                href={item.href}
+                prefetch={item.href === "/resume" ? true : undefined}
+                className="relative px-4 py-2 text-foreground/70 hover:text-foreground transition-colors duration-300 text-sm font-medium"
+              >
+                {item.name}
+              </Link>
+            </motion.div>
           ))}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -139,20 +150,24 @@ export default function Navbar() {
           >
             <nav className="container mx-auto px-4 pt-24 flex flex-col items-center justify-center h-full space-y-2">
               {navItems.map((item, index) => (
-                <motion.a
+                <motion.div
                   key={item.name}
-                  href={item.href}
-                  className="text-3xl font-display font-bold text-foreground/80 hover:text-primary transition-colors py-4"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 20 }}
                   transition={{ duration: 0.3, delay: 0.1 + index * 0.05 }}
-                  onClick={() => setIsOpen(false)}
                   whileHover={{ scale: 1.05, x: 10 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  {item.name}
-                </motion.a>
+                  <Link
+                    href={item.href}
+                    prefetch={item.href === "/resume" ? true : undefined}
+                    className="text-3xl font-display font-bold text-foreground/80 hover:text-primary transition-colors py-4 block"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                </motion.div>
               ))}
             </nav>
           </motion.div>

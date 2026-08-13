@@ -21,6 +21,7 @@ module.exports = {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
         display: ["var(--font-display)", "system-ui", "sans-serif"],
         serif: ["var(--font-serif)", "Georgia", "serif"],
+        resume: ["var(--font-resume)", "system-ui", "sans-serif"],
       },
       fontSize: {
         "hero": ["clamp(3.5rem, 10vw, 5.5rem)", { lineHeight: "1.0", letterSpacing: "-0.03em", fontWeight: "600" }],
