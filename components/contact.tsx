@@ -31,7 +31,8 @@ function ListeningAside() {
 
   if (!playlistId) return null
 
-  const embedTheme = mounted && resolvedTheme === "light" ? 1 : 0
+  const isLight = mounted && resolvedTheme === "light"
+  const embedTheme = isLight ? 1 : 0
   const src = `https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator&theme=${embedTheme}`
 
   return (
@@ -39,22 +40,24 @@ function ListeningAside() {
       <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
         Now playing
       </p>
-      <div className="overflow-hidden rounded-xl border border-border/50 bg-card">
-        {mounted ? (
-          <iframe
-            key={src}
-            title="Overthinking Thoughts on Spotify"
-            src={src}
-            width="100%"
-            height="152"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
-            className="block border-0"
-          />
-        ) : (
-          <div className="h-[152px] animate-pulse bg-muted/60" />
-        )}
-      </div>
+      {mounted ? (
+        <iframe
+          key={src}
+          title="Overthinking Thoughts on Spotify"
+          src={src}
+          width="100%"
+          height="152"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+          className={
+            isLight
+              ? "block w-full rounded-xl border-0 bg-[#f6f6f6]"
+              : "block w-full rounded-xl border-0 bg-[#282828]"
+          }
+        />
+      ) : (
+        <div className="h-[152px] animate-pulse rounded-xl bg-muted/60" />
+      )}
       <p className="mt-3 text-sm text-muted-foreground">Overthinking Thoughts — on while I ship.</p>
     </aside>
   )
