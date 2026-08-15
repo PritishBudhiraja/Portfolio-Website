@@ -1,12 +1,12 @@
 "use client"
 
-import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
-import { Card } from "@/components/ui/card"
-import { Mail, Phone, MapPin, ExternalLink } from "lucide-react"
+import { useEffect, useState } from "react"
+import { useTheme } from "next-themes"
+import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react"
 import { FadeIn } from "@/components/motion/fade-in"
 import { SectionLabel } from "@/components/ui/section-label"
 import { OriginButton, OriginButtonOutline } from "@/components/ui/origin-button"
+import { getSpotifyPlaylistId, SPOTIFY_PLAYLIST_URL } from "@/lib/site-config"
 
 const LinkedinIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -20,174 +20,129 @@ const GithubIcon = ({ className }: { className?: string }) => (
   </svg>
 )
 
-const contactItems = [
-  {
-    icon: Mail,
-    label: "Email",
-    value: "pritish.budhiraja@gmail.com",
-    href: "mailto:pritish.budhiraja@gmail.com",
-  },
-  {
-    icon: Phone,
-    label: "Phone",
-    value: "+91-8979984894",
-    href: "tel:+918979984894",
-  },
-  {
-    icon: MapPin,
-    label: "Location",
-    value: "Bangalore, India",
-    href: null,
-  },
-]
+function ListeningAside() {
+  const playlistId = getSpotifyPlaylistId(SPOTIFY_PLAYLIST_URL)
+  const { resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
 
-export default function Contact() {
-  const cardRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(cardRef, { once: true, amount: 0.3 })
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!playlistId) return null
+
+  const embedTheme = mounted && resolvedTheme === "light" ? 1 : 0
+  const src = `https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator&theme=${embedTheme}`
 
   return (
-    <section id="contact" className="py-24 bg-muted/30 relative overflow-hidden">
+    <aside id="listening" className="lg:pt-16">
+      <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+        Now playing
+      </p>
+      <div className="overflow-hidden rounded-xl border border-border/50 bg-card">
+        {mounted ? (
+          <iframe
+            key={src}
+            title="Overthinking Thoughts on Spotify"
+            src={src}
+            width="100%"
+            height="152"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+            className="block border-0"
+          />
+        ) : (
+          <div className="h-[152px] animate-pulse bg-muted/60" />
+        )}
+      </div>
+      <p className="mt-3 text-sm text-muted-foreground">
+        Overthinking Thoughts — on while I ship.
+      </p>
+    </aside>
+  )
+}
+
+export default function Contact() {
+  const hasPlaylist = Boolean(getSpotifyPlaylistId(SPOTIFY_PLAYLIST_URL))
+
+  return (
+    <section id="contact" className="relative overflow-hidden bg-muted/30 py-24 md:py-28">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 h-80 w-80 rounded-full bg-primary/5 blur-3xl" />
       </div>
 
       <div className="container mx-auto px-4">
-        <div className="flex flex-col items-center mb-16">
-          <SectionLabel>Let's Connect</SectionLabel>
-          <FadeIn>
-            <h2 className="text-section font-display font-bold mb-6 text-center">Get In Touch</h2>
-          </FadeIn>
-          <FadeIn delay={0.2}>
-            <p className="text-lg md:text-xl text-center max-w-3xl text-muted-foreground leading-relaxed">
-              Feel free to reach out to me for any inquiries, opportunities, or just to say hello!
-            </p>
-          </FadeIn>
-        </div>
+        <div className="mx-auto grid max-w-6xl grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-7">
+            <SectionLabel>Let&apos;s connect</SectionLabel>
+            <FadeIn>
+              <h2 className="mb-5 font-display text-section font-bold">Get in touch</h2>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <p className="max-w-lg text-lg text-muted-foreground leading-relaxed md:text-xl">
+                Work, a question, or just hello — I read everything. Open to roles and
+                interesting frontend-systems problems.
+              </p>
+            </FadeIn>
 
-        <motion.div
-          ref={cardRef}
-          className="max-w-4xl mx-auto"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <Card className="border-none shadow-xl overflow-hidden">
-            <div className="grid grid-cols-1 md:grid-cols-2">
-              <motion.div
-                className="bg-primary text-primary-foreground p-8 md:p-10 flex flex-col justify-between relative overflow-hidden"
-                initial={{ x: -50, opacity: 0 }}
-                animate={isInView ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+            <FadeIn delay={0.2}>
+              <a
+                href="mailto:pritish.budhiraja@gmail.com"
+                className="group mt-10 inline-flex items-center gap-2 font-display text-2xl font-semibold tracking-tight transition-colors hover:text-primary md:text-3xl"
               >
-                <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
-                <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2" />
+                pritish.budhiraja@gmail.com
+                <ArrowUpRight className="h-6 w-6 text-muted-foreground transition-colors group-hover:text-primary" />
+              </a>
+            </FadeIn>
 
-                <div className="relative z-10">
-                  <h3 className="text-2xl font-display font-bold mb-4">Contact Information</h3>
-                  <p className="text-primary-foreground/80 mb-10 leading-relaxed">
-                    I'm currently open to new opportunities and collaborations. Let's connect!
-                  </p>
-
-                  <div className="space-y-6">
-                    {contactItems.map((item, index) => (
-                      <motion.div
-                        key={item.label}
-                        className="flex items-start gap-4"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                        transition={{ delay: 0.3 + index * 0.1 }}
-                      >
-                        <div className="bg-primary-foreground/10 p-3 rounded-xl">
-                          <item.icon className="h-5 w-5 text-primary-foreground" />
-                        </div>
-                        <div>
-                          <h4 className="font-medium text-primary-foreground/90 text-sm uppercase tracking-wide">
-                            {item.label}
-                          </h4>
-                          {item.href ? (
-                            <a
-                              href={item.href}
-                              className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-                            >
-                              {item.value}
-                            </a>
-                          ) : (
-                            <p className="text-primary-foreground/80">{item.value}</p>
-                          )}
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-
-                <motion.div
-                  className="mt-12 relative z-10"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ delay: 0.6 }}
+            <FadeIn delay={0.25}>
+              <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
+                <a
+                  href="tel:+918979984894"
+                  className="inline-flex items-center gap-1.5 transition-colors hover:text-foreground"
                 >
-                  <h4 className="font-medium text-primary-foreground/90 mb-4 text-sm uppercase tracking-wide">
-                    Connect with me
-                  </h4>
-                  <div className="flex gap-3">
-                    <motion.a
-                      href="https://linkedin.com/in/pritish-budhiraja"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-primary-foreground/10 p-3 rounded-xl hover:bg-primary-foreground/20 transition-colors"
-                      aria-label="LinkedIn"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <LinkedinIcon className="h-5 w-5 text-primary-foreground" />
-                    </motion.a>
-                    <motion.a
-                      href="https://github.com/PritishBudhiraja"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-primary-foreground/10 p-3 rounded-xl hover:bg-primary-foreground/20 transition-colors"
-                      aria-label="GitHub"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <GithubIcon className="h-5 w-5 text-primary-foreground" />
-                    </motion.a>
-                  </div>
-                </motion.div>
-              </motion.div>
+                  <Phone className="h-3.5 w-3.5" />
+                  +91-8979984894
+                </a>
+                <span className="inline-flex items-center gap-1.5">
+                  <MapPin className="h-3.5 w-3.5" />
+                  Bangalore, India
+                </span>
+              </div>
+            </FadeIn>
 
-              <motion.div
-                className="p-8 md:p-10 flex flex-col justify-center"
-                initial={{ x: 50, opacity: 0 }}
-                animate={isInView ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                <div className="text-center space-y-6">
-                  <motion.div
-                    className="inline-block mx-auto bg-primary/10 p-5 rounded-2xl mb-2"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  >
-                    <Mail className="h-10 w-10 text-primary" />
-                  </motion.div>
-                  <h3 className="text-2xl font-display font-bold">Let's Work Together</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    I'm always interested in hearing about new projects and opportunities.
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-                    <OriginButton href="mailto:pritish.budhiraja@gmail.com">
-                      Send Email <ExternalLink className="h-4 w-4" />
-                    </OriginButton>
-                    <OriginButtonOutline href="https://linkedin.com/in/pritish-budhiraja" target="_blank" rel="noopener noreferrer">
-                      LinkedIn <LinkedinIcon className="h-4 w-4" />
-                    </OriginButtonOutline>
-                  </div>
-                </div>
-              </motion.div>
+            <FadeIn delay={0.3}>
+              <div className="mt-10 flex flex-wrap items-center gap-3">
+                <OriginButton href="mailto:pritish.budhiraja@gmail.com">
+                  Send email <Mail className="h-4 w-4" />
+                </OriginButton>
+                <OriginButtonOutline
+                  href="https://linkedin.com/in/pritish-budhiraja"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn <LinkedinIcon className="h-4 w-4" />
+                </OriginButtonOutline>
+                <OriginButtonOutline
+                  href="https://github.com/PritishBudhiraja"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 px-0"
+                >
+                  <span className="sr-only">GitHub</span>
+                  <GithubIcon className="h-4 w-4" />
+                </OriginButtonOutline>
+              </div>
+            </FadeIn>
+          </div>
+
+          {hasPlaylist ? (
+            <div className="lg:col-span-5">
+              <ListeningAside />
             </div>
-          </Card>
-        </motion.div>
+          ) : null}
+        </div>
       </div>
     </section>
   )

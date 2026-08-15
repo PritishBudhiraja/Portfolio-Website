@@ -42,7 +42,7 @@ export default function Hero() {
 
               <FadeIn delay={0.6} direction="up">
                 <h2 className="text-subsection font-display font-medium text-foreground/70">
-                  Building scalable products with modern web technologies
+                  I build the frontend systems behind AI testing and payments.
                 </h2>
               </FadeIn>
             </div>
@@ -60,8 +60,8 @@ export default function Hero() {
                 <OriginButton href="#contact">
                   Contact Me <ArrowRight className="h-5 w-5" />
                 </OriginButton>
-                <OriginButtonOutline href="#experience">
-                  View Experience
+                <OriginButtonOutline href="#work">
+                  See my work
                 </OriginButtonOutline>
               </div>
             </FadeIn>

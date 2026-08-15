@@ -12,8 +12,7 @@ import { cn } from "@/lib/utils"
 const navItems = [
   { name: "Home", href: "/#home" },
   { name: "About", href: "/#about" },
-  { name: "Skills", href: "/#skills" },
-  { name: "Experience", href: "/#experience" },
+  { name: "Work", href: "/#work" },
   { name: "Contact", href: "/#contact" },
   { name: "Resume", href: "/resume" },
 ]
@@ -21,7 +20,6 @@ const navItems = [
 export default function Navbar() {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
-  const [hidden, setHidden] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const { scrollY } = useScroll()
 
@@ -30,14 +28,6 @@ export default function Navbar() {
   }, [router])
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious() ?? 0
-    
-    if (latest > 100 && latest > previous) {
-      setHidden(true)
-    } else {
-      setHidden(false)
-    }
-    
     setScrolled(latest > 50)
   })
 
@@ -54,9 +44,9 @@ export default function Navbar() {
 
   return (
     <motion.header
-      initial={{ y: 0 }}
-      animate={{ y: hidden && !isOpen ? "-100%" : 0 }}
-      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+      initial={{ y: -16, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-500",
         scrolled
