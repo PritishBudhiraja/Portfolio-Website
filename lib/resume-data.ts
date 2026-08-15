@@ -74,9 +74,7 @@ export const professionalExperience: ResumeCompany[] = [
           [
             "Built the end-to-end ",
             { bold: "Teach Agent" },
-            " workflow, using ",
-            { bold: "Steel Dev" },
-            " (self-hosted, open-source browser automation) to record browser sessions and convert them into AI-generated Gherkin scenarios and executable Python tests through asynchronous artifact processing and progressive generation.",
+            " workflow, using an open-source browser tool to record browser sessions and convert them into AI-generated Gherkin scenarios and executable Python tests through asynchronous artifact processing and progressive generation.",
           ],
           [
             "Architected the ",

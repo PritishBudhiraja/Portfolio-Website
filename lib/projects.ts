@@ -30,7 +30,7 @@ export const projects: Project[] = [
     context: "TestZeus · 2025",
     summary:
       "Record a browser session and get Gherkin scenarios plus executable Python tests — async artifact processing, not a prompt in a box.",
-    tags: ["React", "Steel Dev", "Python", "Async pipelines"],
+    tags: ["React", "Open-source browser", "Python", "Async pipelines"],
     links: [{ label: "Live", href: "https://www.testzeus.com/" }],
     featured: true,
     frame: "agent",
