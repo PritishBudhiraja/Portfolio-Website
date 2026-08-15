@@ -1,13 +1,13 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion"
+import { Menu, X } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion"
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
-import { ThemeToggle } from "./theme-toggle"
 import { cn } from "@/lib/utils"
+import { ThemeToggle } from "./theme-toggle"
 
 const navItems = [
   { name: "Home", href: "/#home" },
@@ -51,7 +51,7 @@ export default function Navbar() {
         "fixed top-0 w-full z-50 transition-all duration-500",
         scrolled
           ? "bg-background/80 backdrop-blur-xl shadow-sm border-b border-border/50"
-          : "bg-transparent"
+          : "bg-transparent",
       )}
     >
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">

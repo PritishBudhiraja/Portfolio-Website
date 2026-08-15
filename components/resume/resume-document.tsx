@@ -1,14 +1,7 @@
-import { ResumeHeader } from "@/components/resume/resume-header"
 import { ResumeExperience } from "@/components/resume/resume-experience"
-import {
-  ResumeEducation,
-  ResumeSkills,
-} from "@/components/resume/resume-sidebar"
-import {
-  earlyExperience,
-  professionalExperience,
-  skillGroups,
-} from "@/lib/resume-data"
+import { ResumeHeader } from "@/components/resume/resume-header"
+import { ResumeEducation, ResumeSkills } from "@/components/resume/resume-sidebar"
+import { earlyExperience, professionalExperience, skillGroups } from "@/lib/resume-data"
 
 export function ResumeDocument() {
   return (
@@ -16,10 +9,7 @@ export function ResumeDocument() {
       <ResumeHeader />
 
       <div className="space-y-8 px-6 sm:px-8 lg:px-12 py-6 pb-12">
-        <ResumeExperience
-          professional={professionalExperience}
-          early={earlyExperience}
-        />
+        <ResumeExperience professional={professionalExperience} early={earlyExperience} />
         <ResumeSkills skills={skillGroups} />
         <ResumeEducation />
       </div>

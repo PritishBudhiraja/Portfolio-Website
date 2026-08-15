@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
-import { useState, useRef, startTransition, type ReactNode } from "react"
+import { type ReactNode, startTransition, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 
 interface OriginButtonProps {
@@ -21,17 +21,16 @@ export function OriginButton({
   target,
   rel,
 }: OriginButtonProps) {
-  const [isHovered, setIsHovered] = useState(false)
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 })
-  const containerRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLElement>(null)
   const scale = useMotionValue(0)
-  
+
   const smoothScale = useSpring(scale, {
     stiffness: 85,
     damping: 18,
     restDelta: 0.001,
   })
-  
+
   const easedScale = useTransform(smoothScale, [0, 1], [0, 1])
 
   const handleMouseEnter = (e: React.MouseEvent) => {
@@ -41,7 +40,6 @@ export function OriginButton({
     const y = e.clientY - rect.top
     startTransition(() => {
       setCursorPos({ x, y })
-      setIsHovered(true)
     })
     scale.set(1)
   }
@@ -53,24 +51,18 @@ export function OriginButton({
     const y = e.clientY - rect.top
     startTransition(() => {
       setCursorPos({ x, y })
-      setIsHovered(false)
     })
     scale.set(0)
   }
 
-  const content = (
-    <div
-      ref={containerRef}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onClick={onClick}
-      className={cn(
-        "relative overflow-hidden cursor-pointer inline-flex items-center justify-center px-8 h-12 rounded-md font-medium text-base",
-        "bg-primary text-primary-foreground",
-        className
-      )}
-    >
-      {/* Circle that expands - darker shade for primary button */}
+  const classNames = cn(
+    "relative overflow-hidden cursor-pointer inline-flex items-center justify-center px-8 h-12 rounded-md font-medium text-base",
+    "bg-primary text-primary-foreground",
+    className,
+  )
+
+  const inner = (
+    <>
       <motion.div
         className="absolute rounded-full pointer-events-none bg-primary-foreground/20"
         style={{
@@ -83,21 +75,38 @@ export function OriginButton({
           y: "-50%",
         }}
       />
-      <span className="relative z-10 flex items-center gap-2">
-        {children}
-      </span>
-    </div>
+      <span className="relative z-10 flex items-center gap-2">{children}</span>
+    </>
   )
 
   if (href) {
     return (
-      <a href={href} target={target} rel={rel}>
-        {content}
+      <a
+        ref={containerRef as React.RefObject<HTMLAnchorElement>}
+        href={href}
+        target={target}
+        rel={rel}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        className={classNames}
+      >
+        {inner}
       </a>
     )
   }
 
-  return content
+  return (
+    <button
+      ref={containerRef as React.RefObject<HTMLButtonElement>}
+      type="button"
+      onClick={onClick}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className={classNames}
+    >
+      {inner}
+    </button>
+  )
 }
 
 interface OriginButtonOutlineProps {
@@ -119,15 +128,15 @@ export function OriginButtonOutline({
 }: OriginButtonOutlineProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 })
-  const containerRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLElement>(null)
   const scale = useMotionValue(0)
-  
+
   const smoothScale = useSpring(scale, {
     stiffness: 85,
     damping: 18,
     restDelta: 0.001,
   })
-  
+
   const easedScale = useTransform(smoothScale, [0, 1], [0, 1])
 
   const handleMouseEnter = (e: React.MouseEvent) => {
@@ -154,19 +163,14 @@ export function OriginButtonOutline({
     scale.set(0)
   }
 
-  const content = (
-    <div
-      ref={containerRef}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onClick={onClick}
-      className={cn(
-        "relative overflow-hidden cursor-pointer inline-flex items-center justify-center px-8 h-12 rounded-md font-medium text-base",
-        "border border-input bg-background",
-        className
-      )}
-    >
-      {/* Circle that expands - primary color fills the outline button */}
+  const classNames = cn(
+    "relative overflow-hidden cursor-pointer inline-flex items-center justify-center px-8 h-12 rounded-md font-medium text-base",
+    "border border-input bg-background",
+    className,
+  )
+
+  const inner = (
+    <>
       <motion.div
         className="absolute rounded-full pointer-events-none bg-primary"
         style={{
@@ -179,24 +183,43 @@ export function OriginButtonOutline({
           y: "-50%",
         }}
       />
-      <span 
+      <span
         className={cn(
           "relative z-10 flex items-center gap-2 transition-colors duration-200",
-          isHovered ? "text-primary-foreground" : "text-foreground"
+          isHovered ? "text-primary-foreground" : "text-foreground",
         )}
       >
         {children}
       </span>
-    </div>
+    </>
   )
 
   if (href) {
     return (
-      <a href={href} target={target} rel={rel}>
-        {content}
+      <a
+        ref={containerRef as React.RefObject<HTMLAnchorElement>}
+        href={href}
+        target={target}
+        rel={rel}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        className={classNames}
+      >
+        {inner}
       </a>
     )
   }
 
-  return content
+  return (
+    <button
+      ref={containerRef as React.RefObject<HTMLButtonElement>}
+      type="button"
+      onClick={onClick}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className={classNames}
+    >
+      {inner}
+    </button>
+  )
 }

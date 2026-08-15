@@ -152,6 +152,7 @@ function toast({ ...props }: Toast) {
 function useToast() {
   const [state, setState] = React.useState<State>(memoryState)
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: shadcn toast store re-subscribes when memory state changes
   React.useEffect(() => {
     listeners.push(setState)
     return () => {
@@ -169,4 +170,4 @@ function useToast() {
   }
 }
 
-export { useToast, toast }
+export { useToast }

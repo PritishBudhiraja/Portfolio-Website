@@ -1,5 +1,5 @@
-import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
+import Navbar from "@/components/navbar"
 import { ResumeActions } from "@/components/resume/resume-actions"
 import { ResumeDocument } from "@/components/resume/resume-document"
 

@@ -1,6 +1,155 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-instrument), system-ui, sans-serif;
+  --font-serif: var(--font-source-serif), Georgia, serif;
+  --font-resume: var(--font-work-sans), system-ui, sans-serif;
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --text-hero: clamp(3.5rem, 10vw, 5.5rem);
+  --text-hero--line-height: 1;
+  --text-hero--letter-spacing: -0.03em;
+  --text-hero--font-weight: 600;
+
+  --text-section: clamp(2rem, 5vw, 3.5rem);
+  --text-section--line-height: 1.1;
+  --text-section--letter-spacing: -0.02em;
+
+  --text-subsection: clamp(1.25rem, 3vw, 1.75rem);
+  --text-subsection--line-height: 1.3;
+  --text-subsection--letter-spacing: -0.01em;
+
+  --text-display-xl: clamp(3.5rem, 10vw, 6.5rem);
+  --text-display-xl--line-height: 1;
+  --text-display-xl--letter-spacing: -0.03em;
+
+  --text-display-lg: clamp(2.5rem, 6vw, 4.5rem);
+  --text-display-lg--line-height: 1.05;
+  --text-display-lg--letter-spacing: -0.03em;
+
+  --text-display-md: clamp(2rem, 4vw, 3rem);
+  --text-display-md--line-height: 1.1;
+  --text-display-md--letter-spacing: -0.02em;
+
+  --text-display-sm: clamp(1.5rem, 3vw, 2rem);
+  --text-display-sm--line-height: 1.2;
+  --text-display-sm--letter-spacing: -0.01em;
+
+  --animate-glow-pulse: glow-pulse 3s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-gradient-shift: gradient-shift 8s ease infinite;
+
+  @keyframes glow-pulse {
+    0%,
+    100% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+  width: 100%;
+  max-width: 1400px;
+}
+
+:root {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(240 10% 3.9%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(240 10% 3.9%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(240 10% 3.9%);
+  --primary: hsl(221.2 83.2% 53.3%);
+  --primary-foreground: hsl(210 40% 98%);
+  --secondary: hsl(240 4.8% 95.9%);
+  --secondary-foreground: hsl(240 5.9% 10%);
+  --muted: hsl(240 4.8% 95.9%);
+  --muted-foreground: hsl(240 3.8% 46.1%);
+  --accent: hsl(240 4.8% 95.9%);
+  --accent-foreground: hsl(240 5.9% 10%);
+  --destructive: hsl(0 84.2% 60.2%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --border: hsl(240 5.9% 90%);
+  --input: hsl(240 5.9% 90%);
+  --ring: hsl(221.2 83.2% 53.3%);
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: hsl(222 47% 4%);
+  --foreground: hsl(210 40% 98%);
+  --card: hsl(222 47% 7%);
+  --card-foreground: hsl(210 40% 98%);
+  --popover: hsl(222 47% 7%);
+  --popover-foreground: hsl(210 40% 98%);
+  --primary: hsl(230 80% 65%);
+  --primary-foreground: hsl(222 47% 4%);
+  --secondary: hsl(220 30% 12%);
+  --secondary-foreground: hsl(210 40% 98%);
+  --muted: hsl(220 30% 12%);
+  --muted-foreground: hsl(220 15% 55%);
+  --accent: hsl(220 30% 12%);
+  --accent-foreground: hsl(210 40% 98%);
+  --destructive: hsl(0 62.8% 30.6%);
+  --destructive-foreground: hsl(210 40% 98%);
+  --border: hsl(220 30% 14%);
+  --input: hsl(220 30% 14%);
+  --ring: hsl(230 80% 65%);
+}
 
 /* View Transition API - Circular Reveal Theme Toggle */
 ::view-transition-old(root),
@@ -17,12 +166,10 @@
   z-index: 2147483647;
 }
 
-/* Disable default animations */
 ::view-transition-image-pair(root) {
   isolation: auto;
 }
 
-/* Gradient heading gets its own smooth crossfade transition */
 ::view-transition-old(gradient-heading),
 ::view-transition-new(gradient-heading) {
   animation-duration: 0.4s;
@@ -38,59 +185,20 @@
 }
 
 @keyframes fade-out {
-  from { opacity: 1; }
-  to { opacity: 0; }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 @keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 221.2 83.2% 53.3%;
-    --radius: 0.5rem;
+  from {
+    opacity: 0;
   }
-
-  .dark {
-    --background: 222 47% 4%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 7%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 47% 7%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 230 80% 65%;
-    --primary-foreground: 222 47% 4%;
-    --secondary: 220 30% 12%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 220 30% 12%;
-    --muted-foreground: 220 15% 55%;
-    --accent: 220 30% 12%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 220 30% 14%;
-    --input: 220 30% 14%;
-    --ring: 230 80% 65%;
+  to {
+    opacity: 1;
   }
 }
 
@@ -98,20 +206,25 @@
   * {
     @apply border-border;
   }
-  
+
   html {
     scroll-behavior: auto;
   }
-  
+
   body {
     @apply bg-background text-foreground antialiased;
   }
-  
+
   ::selection {
     @apply bg-primary/30 text-foreground;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-display tracking-tight;
   }
 }
@@ -123,14 +236,18 @@
 
   .gradient-text {
     @apply bg-clip-text text-transparent;
-    background: linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--muted-foreground)) 100%);
+    background: linear-gradient(135deg, var(--foreground) 0%, var(--muted-foreground) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   .gradient-text-primary {
     @apply bg-clip-text text-transparent;
-    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.7) 100%);
+    background: linear-gradient(
+      135deg,
+      var(--primary) 0%,
+      color-mix(in srgb, var(--primary) 70%, transparent) 100%
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -186,32 +303,32 @@
 
 @layer components {
   .section-heading {
-    @apply text-display-md font-display font-bold mb-4 text-center;
+    @apply mb-4 text-center font-display text-display-md font-bold;
   }
 
   .section-description {
-    @apply text-lg md:text-xl text-center max-w-3xl text-muted-foreground leading-relaxed;
+    @apply max-w-3xl text-center text-lg leading-relaxed text-muted-foreground md:text-xl;
   }
 }
 
 /* Resume page — same tokens as the rest of the site */
 .resume-page {
-  --resume-page-bg: hsl(var(--background));
-  --resume-paper: hsl(var(--card));
-  --resume-header-bg: hsl(var(--muted) / 0.45);
-  --resume-text: hsl(var(--foreground));
-  --resume-text-medium: hsl(var(--muted-foreground));
-  --resume-text-light: hsl(var(--muted-foreground));
-  --resume-link: hsl(var(--primary));
-  --resume-section: hsl(var(--primary));
-  --resume-divider: hsl(var(--border));
+  --resume-page-bg: var(--background);
+  --resume-paper: var(--card);
+  --resume-header-bg: color-mix(in srgb, var(--muted) 45%, transparent);
+  --resume-text: var(--foreground);
+  --resume-text-medium: var(--muted-foreground);
+  --resume-text-light: var(--muted-foreground);
+  --resume-link: var(--primary);
+  --resume-section: var(--primary);
+  --resume-divider: var(--border);
 }
 
 .resume-section-title {
   font-family: var(--font-resume), system-ui, sans-serif;
   letter-spacing: 0.01em;
   padding-bottom: 0.2rem;
-  border-bottom: 1px solid hsl(var(--border));
+  border-bottom: 1px solid var(--border);
 }
 
 @media print {

@@ -1,8 +1,8 @@
 "use client"
 
 import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
 import { Mail } from "lucide-react"
+import { useRef } from "react"
 
 const LinkedinIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -82,9 +82,7 @@ export default function Footer() {
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <p className="text-sm text-muted-foreground">
-            © {currentYear} Pritish Budhiraja.
-          </p>
+          <p className="text-sm text-muted-foreground">© {currentYear} Pritish Budhiraja.</p>
         </motion.div>
       </div>
     </footer>

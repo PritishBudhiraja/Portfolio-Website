@@ -1,12 +1,12 @@
 "use client"
 
-import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import { ArrowUpRight } from "lucide-react"
+import { useRef } from "react"
 import { FadeIn } from "@/components/motion/fade-in"
 import { SectionLabel } from "@/components/ui/section-label"
+import { type Project, type ProjectFrame, projects } from "@/lib/projects"
 import { cn } from "@/lib/utils"
-import { projects, type Project, type ProjectFrame } from "@/lib/projects"
 
 function ProductFrame({ variant, featured }: { variant: ProjectFrame; featured?: boolean }) {
   const height = featured ? "h-36 md:h-40" : "h-20"
@@ -15,10 +15,10 @@ function ProductFrame({ variant, featured }: { variant: ProjectFrame; featured?:
     <div
       className={cn(
         "relative mb-5 overflow-hidden rounded-xl border border-border/60 bg-muted/40",
-        height
+        height,
       )}
     >
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.35)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.35)_1px,transparent_1px)] bg-[size:18px_18px]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,color-mix(in_srgb,var(--border)_35%,transparent)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_srgb,var(--border)_35%,transparent)_1px,transparent_1px)] bg-[size:18px_18px]" />
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent" />
 
       <div className="relative flex items-center gap-1.5 border-b border-border/50 bg-background/60 px-3 py-1.5 backdrop-blur-sm">
@@ -184,7 +184,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       className={cn(
         "group relative flex flex-col overflow-hidden rounded-2xl border border-border/50 bg-card p-6 md:p-7",
         "transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5",
-        colSpanClass
+        colSpanClass,
       )}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -247,8 +247,8 @@ export default function Projects() {
           </FadeIn>
           <FadeIn delay={0.15}>
             <p className="max-w-2xl text-center text-lg text-muted-foreground md:text-xl">
-              Product systems I&apos;ve owned — from AI testing workflows to payment SDKs,
-              plus a couple of focused personal builds.
+              Product systems I&apos;ve owned — from AI testing workflows to payment SDKs, plus a
+              couple of focused personal builds.
             </p>
           </FadeIn>
         </div>

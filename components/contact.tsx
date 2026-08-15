@@ -1,11 +1,11 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react"
 import { useTheme } from "next-themes"
-import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react"
+import { useEffect, useState } from "react"
 import { FadeIn } from "@/components/motion/fade-in"
-import { SectionLabel } from "@/components/ui/section-label"
 import { OriginButton, OriginButtonOutline } from "@/components/ui/origin-button"
+import { SectionLabel } from "@/components/ui/section-label"
 import { getSpotifyPlaylistId, SPOTIFY_PLAYLIST_URL } from "@/lib/site-config"
 
 const LinkedinIcon = ({ className }: { className?: string }) => (
@@ -55,9 +55,7 @@ function ListeningAside() {
           <div className="h-[152px] animate-pulse bg-muted/60" />
         )}
       </div>
-      <p className="mt-3 text-sm text-muted-foreground">
-        Overthinking Thoughts — on while I ship.
-      </p>
+      <p className="mt-3 text-sm text-muted-foreground">Overthinking Thoughts — on while I ship.</p>
     </aside>
   )
 }
@@ -81,8 +79,8 @@ export default function Contact() {
             </FadeIn>
             <FadeIn delay={0.1}>
               <p className="max-w-lg text-lg text-muted-foreground leading-relaxed md:text-xl">
-                Work, a question, or just hello — I read everything. Open to roles and
-                interesting frontend-systems problems.
+                Work, a question, or just hello — I read everything. Open to roles and interesting
+                frontend-systems problems.
               </p>
             </FadeIn>
 

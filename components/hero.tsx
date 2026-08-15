@@ -2,9 +2,9 @@
 
 import { motion } from "framer-motion"
 import { ArrowRight, Mail } from "lucide-react"
-import { TextReveal } from "@/components/motion/text-reveal"
 import { FadeIn } from "@/components/motion/fade-in"
 import { StaggerContainer, StaggerItem } from "@/components/motion/stagger-container"
+import { TextReveal } from "@/components/motion/text-reveal"
 import { OriginButton, OriginButtonOutline } from "@/components/ui/origin-button"
 import { SectionLabel } from "@/components/ui/section-label"
 
@@ -22,7 +22,10 @@ const GithubIcon = ({ className }: { className?: string }) => (
 
 export default function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-20 pb-20 md:pt-0 md:pb-0 overflow-hidden grid-background">
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center pt-20 pb-20 md:pt-0 md:pb-0 overflow-hidden grid-background"
+    >
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-12 md:gap-8">
           <div className="w-full md:w-3/5 space-y-8">
@@ -49,8 +52,8 @@ export default function Hero() {
 
             <FadeIn delay={0.8} direction="up">
               <p className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed">
-                Full-stack engineer specializing in React, TypeScript, and cloud infrastructure. 
-                Currently building AI-powered testing platforms at TestZeus, previously shipping 
+                Full-stack engineer specializing in React, TypeScript, and cloud infrastructure.
+                Currently building AI-powered testing platforms at TestZeus, previously shipping
                 payment solutions at Juspay.
               </p>
             </FadeIn>
@@ -60,9 +63,7 @@ export default function Hero() {
                 <OriginButton href="#contact">
                   Contact Me <ArrowRight className="h-5 w-5" />
                 </OriginButton>
-                <OriginButtonOutline href="#work">
-                  See my work
-                </OriginButtonOutline>
+                <OriginButtonOutline href="#work">See my work</OriginButtonOutline>
               </div>
             </FadeIn>
 
@@ -103,7 +104,11 @@ export default function Hero() {
             </StaggerContainer>
           </div>
 
-          <FadeIn delay={0.8} direction="left" className="w-full md:w-2/5 flex justify-center md:justify-end">
+          <FadeIn
+            delay={0.8}
+            direction="left"
+            className="w-full md:w-2/5 flex justify-center md:justify-end"
+          >
             <div className="relative">
               <motion.div
                 className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96"

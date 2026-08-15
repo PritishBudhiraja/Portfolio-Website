@@ -4,9 +4,9 @@ export type TextPart =
   | { link: string; href: string }
   | { italic: string }
 
-export type ResumeBullet = TextPart[]
+type ResumeBullet = TextPart[]
 
-export type ResumeRole = {
+type ResumeRole = {
   title: string
   period: string
   bullets: ResumeBullet[]
@@ -213,14 +213,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     label: "Infra & delivery",
-    items: [
-      "Docker",
-      "Kubernetes",
-      "CI/CD (Jenkins)",
-      "AWS (S3/CloudFront)",
-      "Vite",
-      "Webpack",
-    ],
+    items: ["Docker", "Kubernetes", "CI/CD (Jenkins)", "AWS (S3/CloudFront)", "Vite", "Webpack"],
   },
   {
     label: "Backend & data",

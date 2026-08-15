@@ -58,11 +58,7 @@ const directionVariants = {
   none: { x: 0, y: 0 },
 }
 
-export function StaggerItem({
-  children,
-  className,
-  direction = "up",
-}: StaggerItemProps) {
+export function StaggerItem({ children, className, direction = "up" }: StaggerItemProps) {
   return (
     <motion.div
       variants={{

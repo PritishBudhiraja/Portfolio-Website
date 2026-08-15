@@ -1,7 +1,7 @@
 "use client"
 
-import Link from "next/link"
 import { ArrowRight } from "lucide-react"
+import Link from "next/link"
 import { FadeIn } from "@/components/motion/fade-in"
 import { SectionLabel } from "@/components/ui/section-label"
 
@@ -16,10 +16,10 @@ export default function About() {
           </FadeIn>
           <FadeIn delay={0.15}>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-              I&apos;m a Senior Software Engineer who likes owning the path from UI to infra.
-              These days that means AI-powered testing at TestZeus. Before that I spent a few
-              years on Hyperswitch at Juspay — checkout SDKs, merchant dashboards, and the
-              pipelines that ship them.
+              I&apos;m a Senior Software Engineer who likes owning the path from UI to infra. These
+              days that means AI-powered testing at TestZeus. Before that I spent a few years on
+              Hyperswitch at Juspay — checkout SDKs, merchant dashboards, and the pipelines that
+              ship them.
             </p>
           </FadeIn>
           <FadeIn delay={0.3}>

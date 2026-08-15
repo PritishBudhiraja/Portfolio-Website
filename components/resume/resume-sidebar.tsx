@@ -48,11 +48,7 @@ export function ResumeEducation() {
           rel="noopener noreferrer"
           className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-border bg-white p-1.5"
         >
-          <img
-            src={education.logo}
-            alt="KIIT logo"
-            className="h-full w-full object-contain"
-          />
+          <img src={education.logo} alt="KIIT logo" className="h-full w-full object-contain" />
         </a>
         <div className="min-w-0 flex-1 text-[0.875rem] leading-[1.5]">
           <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
@@ -71,9 +67,7 @@ export function ResumeEducation() {
           <p className="m-0 mt-1 text-[var(--resume-text-medium)]">
             {education.degree}; {education.gpa}
           </p>
-          <p className="m-0 mt-0.5 text-[var(--resume-text-medium)]">
-            {education.location}
-          </p>
+          <p className="m-0 mt-0.5 text-[var(--resume-text-medium)]">{education.location}</p>
         </div>
       </div>
     </section>

@@ -1,4 +1,4 @@
-export type ProjectLink = {
+type ProjectLink = {
   label: string
   href: string
 }
@@ -96,11 +96,10 @@ export const projects: Project[] = [
   {
     title: "URL shortener",
     context: "Personal",
-    summary: "Short links and click analytics as a production-style API — Fastify, TypeScript, Redis.",
+    summary:
+      "Short links and click analytics as a production-style API — Fastify, TypeScript, Redis.",
     tags: ["Fastify", "TypeScript", "Redis"],
-    links: [
-      { label: "GitHub", href: "https://github.com/PritishBudhiraja/url-shortener" },
-    ],
+    links: [{ label: "GitHub", href: "https://github.com/PritishBudhiraja/url-shortener" }],
     frame: "api",
     colSpan: 1,
   },
@@ -110,9 +109,7 @@ export const projects: Project[] = [
     summary:
       "An API gateway with three Redis algorithms and comments on every command — token bucket, sliding window, and fixed window.",
     tags: ["Express", "Redis", "Docker"],
-    links: [
-      { label: "GitHub", href: "https://github.com/PritishBudhiraja/rate-limiter-gateway" },
-    ],
+    links: [{ label: "GitHub", href: "https://github.com/PritishBudhiraja/rate-limiter-gateway" }],
     frame: "gateway",
     colSpan: 1,
   },

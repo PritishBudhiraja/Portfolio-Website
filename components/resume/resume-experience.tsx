@@ -1,7 +1,7 @@
-import type { ReactNode } from "react"
 import { Calendar } from "lucide-react"
-import type { ResumeCompany } from "@/lib/resume-data"
+import type { ReactNode } from "react"
 import { ResumeRichText } from "@/components/resume/resume-rich-text"
+import type { ResumeCompany } from "@/lib/resume-data"
 
 function ExperienceItem({ company }: { company: ResumeCompany }) {
   const [primary, ...rest] = company.roles
@@ -45,10 +45,7 @@ function ExperienceItem({ company }: { company: ResumeCompany }) {
         </div>
         <ul className="mt-1 mb-0 pl-3 list-disc space-y-1.5 marker:text-[var(--resume-text-light)]">
           {primary.bullets.map((bullet, i) => (
-            <li
-              key={i}
-              className="text-[0.875rem] leading-[1.45] text-[var(--resume-text)] pl-0.5"
-            >
+            <li key={i} className="text-[0.875rem] leading-[1.45] text-[var(--resume-text)] pl-0.5">
               <ResumeRichText parts={bullet} />
             </li>
           ))}
@@ -57,9 +54,7 @@ function ExperienceItem({ company }: { company: ResumeCompany }) {
         {rest.map((role) => (
           <div key={role.title + role.period} className="mt-4">
             <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-              <p className="m-0 text-[0.95rem] italic text-[var(--resume-text)]">
-                {role.title}
-              </p>
+              <p className="m-0 text-[0.95rem] italic text-[var(--resume-text)]">{role.title}</p>
               <p className="m-0 text-[0.9rem] italic text-[var(--resume-text-medium)]">
                 {role.period}
               </p>

@@ -23,7 +23,7 @@ export function TextReveal({
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once, amount: 0.5 })
   const words = children.split(" ")
-  
+
   let letterIndex = 0
 
   const MotionComponent = motion[Component]
@@ -86,47 +86,5 @@ export function TextReveal({
         </span>
       ))}
     </MotionComponent>
-  )
-}
-
-interface LineRevealProps {
-  children: string
-  className?: string
-  delay?: number
-  once?: boolean
-  as?: "h1" | "h2" | "h3" | "h4" | "p" | "span"
-}
-
-export function LineReveal({
-  children,
-  className,
-  delay = 0,
-  once = true,
-  as: Component = "p",
-}: LineRevealProps) {
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once, amount: 0.5 })
-
-  const MotionComponent = motion[Component]
-
-  return (
-    <span className="inline-block overflow-hidden" ref={ref}>
-      <MotionComponent
-        className={className}
-        initial={{ y: "100%", opacity: 0 }}
-        animate={
-          isInView
-            ? { y: 0, opacity: 1 }
-            : { y: "100%", opacity: 0 }
-        }
-        transition={{
-          duration: 0.6,
-          delay,
-          ease: [0.16, 1, 0.3, 1],
-        }}
-      >
-        {children}
-      </MotionComponent>
-    </span>
   )
 }

@@ -1,9 +1,9 @@
 "use client"
 
-import { useTheme } from "next-themes"
-import { motion, AnimatePresence } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { Moon, Sun } from "lucide-react"
-import { useEffect, useState, useRef } from "react"
+import { useTheme } from "next-themes"
+import { useEffect, useRef, useState } from "react"
 
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme()
@@ -17,31 +17,30 @@ export function ThemeToggle() {
   const toggleTheme = async () => {
     const isDark = resolvedTheme === "dark"
     const newTheme = isDark ? "light" : "dark"
-    
+
     // Check if View Transition API is supported
-    if (
-      typeof document !== "undefined" &&
-      "startViewTransition" in document &&
-      buttonRef.current
-    ) {
+    if (typeof document !== "undefined" && "startViewTransition" in document && buttonRef.current) {
       const rect = buttonRef.current.getBoundingClientRect()
       const x = rect.left + rect.width / 2
       const y = rect.top + rect.height / 2
-      
+
       // Calculate the radius to cover the entire screen
       const radius = Math.hypot(
         Math.max(x, window.innerWidth - x),
-        Math.max(y, window.innerHeight - y)
+        Math.max(y, window.innerHeight - y),
       )
 
       // Set transition direction attribute for CSS
-      document.documentElement.setAttribute("data-theme-transition", isDark ? "to-light" : "to-dark")
+      document.documentElement.setAttribute(
+        "data-theme-transition",
+        isDark ? "to-light" : "to-dark",
+      )
 
       // Start the view transition
-      const transition = (document as any).startViewTransition(async () => {
+      const transition = document.startViewTransition(async () => {
         setTheme(newTheme)
         // Small delay to ensure theme class is applied
-        await new Promise(resolve => setTimeout(resolve, 0))
+        await new Promise((resolve) => setTimeout(resolve, 0))
       })
 
       try {
@@ -50,16 +49,13 @@ export function ThemeToggle() {
         // Animate the clip-path on the new view
         document.documentElement.animate(
           {
-            clipPath: [
-              `circle(0px at ${x}px ${y}px)`,
-              `circle(${radius}px at ${x}px ${y}px)`,
-            ],
+            clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`],
           },
           {
             duration: 400,
             easing: "cubic-bezier(0.4, 0, 0.2, 1)",
             pseudoElement: "::view-transition-new(root)",
-          }
+          },
         )
 
         await transition.finished
@@ -74,7 +70,10 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <button className="relative h-10 w-10 rounded-full bg-muted/50 flex items-center justify-center">
+      <button
+        type="button"
+        className="relative h-10 w-10 rounded-full bg-muted/50 flex items-center justify-center"
+      >
         <span className="sr-only">Toggle theme</span>
       </button>
     )
@@ -85,6 +84,7 @@ export function ThemeToggle() {
   return (
     <motion.button
       ref={buttonRef}
+      type="button"
       className="relative h-10 w-10 rounded-full bg-muted/50 hover:bg-muted flex items-center justify-center overflow-hidden"
       onClick={toggleTheme}
       aria-label="Toggle Theme"
