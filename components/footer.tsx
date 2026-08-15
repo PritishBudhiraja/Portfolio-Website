@@ -2,7 +2,9 @@
 
 import { motion, useInView } from "framer-motion"
 import { Mail } from "lucide-react"
+import Link from "next/link"
 import { useRef } from "react"
+import { SOCIAL_LINKS } from "@/lib/site-config"
 
 const LinkedinIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -19,19 +21,24 @@ const GithubIcon = ({ className }: { className?: string }) => (
 const socialLinks = [
   {
     name: "LinkedIn",
-    href: "https://linkedin.com/in/pritish-budhiraja",
+    href: SOCIAL_LINKS.linkedin,
     icon: LinkedinIcon,
   },
   {
     name: "GitHub",
-    href: "https://github.com/PritishBudhiraja",
+    href: SOCIAL_LINKS.github,
     icon: GithubIcon,
   },
   {
     name: "Email",
-    href: "mailto:pritish.budhiraja@gmail.com",
+    href: `mailto:${SOCIAL_LINKS.email}`,
     icon: Mail,
   },
+]
+
+const footerNav = [
+  { name: "About", href: "/about" },
+  { name: "Resume", href: "/resume" },
 ]
 
 export default function Footer() {
@@ -54,6 +61,18 @@ export default function Footer() {
             </p>
             <p className="text-sm text-muted-foreground mt-1">Senior Software Engineer</p>
           </div>
+
+          <nav className="flex items-center gap-6 text-sm text-muted-foreground">
+            {footerNav.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="transition-colors hover:text-foreground"
+              >
+                {item.name}
+              </Link>
+            ))}
+          </nav>
 
           <div className="flex items-center gap-4">
             {socialLinks.map((link, index) => (

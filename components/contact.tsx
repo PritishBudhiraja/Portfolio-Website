@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 import { FadeIn } from "@/components/motion/fade-in"
 import { OriginButton, OriginButtonOutline } from "@/components/ui/origin-button"
 import { SectionLabel } from "@/components/ui/section-label"
-import { getSpotifyPlaylistId, SPOTIFY_PLAYLIST_URL } from "@/lib/site-config"
+import { getSpotifyPlaylistId, SOCIAL_LINKS, SPOTIFY_PLAYLIST_URL } from "@/lib/site-config"
 
 const LinkedinIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -89,10 +89,10 @@ export default function Contact() {
 
             <FadeIn delay={0.2}>
               <a
-                href="mailto:pritish.budhiraja@gmail.com"
+                href={`mailto:${SOCIAL_LINKS.email}`}
                 className="group mt-10 inline-flex items-center gap-2 font-display text-2xl font-semibold tracking-tight transition-colors hover:text-primary md:text-3xl"
               >
-                pritish.budhiraja@gmail.com
+                {SOCIAL_LINKS.email}
                 <ArrowUpRight className="h-6 w-6 text-muted-foreground transition-colors group-hover:text-primary" />
               </a>
             </FadeIn>
@@ -115,18 +115,18 @@ export default function Contact() {
 
             <FadeIn delay={0.3}>
               <div className="mt-10 flex flex-wrap items-center gap-3">
-                <OriginButton href="mailto:pritish.budhiraja@gmail.com">
+                <OriginButton href={`mailto:${SOCIAL_LINKS.email}`}>
                   Send email <Mail className="h-4 w-4" />
                 </OriginButton>
                 <OriginButtonOutline
-                  href="https://linkedin.com/in/pritish-budhiraja"
+                  href={SOCIAL_LINKS.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   LinkedIn <LinkedinIcon className="h-4 w-4" />
                 </OriginButtonOutline>
                 <OriginButtonOutline
-                  href="https://github.com/PritishBudhiraja"
+                  href={SOCIAL_LINKS.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-12 px-0"

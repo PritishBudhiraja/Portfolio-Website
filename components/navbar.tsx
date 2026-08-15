@@ -11,7 +11,7 @@ import { ThemeToggle } from "./theme-toggle"
 
 const navItems = [
   { name: "Home", href: "/#home" },
-  { name: "About", href: "/#about" },
+  { name: "About", href: "/about" },
   { name: "Work", href: "/#work" },
   { name: "Contact", href: "/#contact" },
   { name: "Resume", href: "/resume" },
@@ -24,6 +24,7 @@ export default function Navbar() {
   const { scrollY } = useScroll()
 
   useEffect(() => {
+    router.prefetch("/about")
     router.prefetch("/resume")
   }, [router])
 
@@ -77,7 +78,7 @@ export default function Navbar() {
             >
               <Link
                 href={item.href}
-                prefetch={item.href === "/resume" ? true : undefined}
+                prefetch={item.href === "/about" || item.href === "/resume" ? true : undefined}
                 className="relative px-4 py-2 text-foreground/70 hover:text-foreground transition-colors duration-300 text-sm font-medium"
               >
                 {item.name}
@@ -151,7 +152,7 @@ export default function Navbar() {
                 >
                   <Link
                     href={item.href}
-                    prefetch={item.href === "/resume" ? true : undefined}
+                    prefetch={item.href === "/about" || item.href === "/resume" ? true : undefined}
                     className="text-3xl font-display font-bold text-foreground/80 hover:text-primary transition-colors py-4 block"
                     onClick={() => setIsOpen(false)}
                   >

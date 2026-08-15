@@ -24,10 +24,10 @@ export default function About() {
           </FadeIn>
           <FadeIn delay={0.3}>
             <Link
-              href="/resume"
+              href="/about"
               className="group inline-flex items-center gap-2 mt-10 text-sm font-medium text-foreground hover:text-primary transition-colors"
             >
-              Full background on the resume
+              More about me
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </FadeIn>

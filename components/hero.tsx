@@ -7,6 +7,7 @@ import { StaggerContainer, StaggerItem } from "@/components/motion/stagger-conta
 import { TextReveal } from "@/components/motion/text-reveal"
 import { OriginButton, OriginButtonOutline } from "@/components/ui/origin-button"
 import { SectionLabel } from "@/components/ui/section-label"
+import { SOCIAL_LINKS } from "@/lib/site-config"
 
 const LinkedinIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -71,7 +72,7 @@ export default function Hero() {
               <div className="flex items-center gap-5">
                 <StaggerItem>
                   <a
-                    href="https://linkedin.com/in/pritish-budhiraja"
+                    href={SOCIAL_LINKS.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex items-center justify-center w-12 h-12 rounded-full bg-muted hover:bg-primary/10 transition-colors duration-300"
@@ -82,7 +83,7 @@ export default function Hero() {
                 </StaggerItem>
                 <StaggerItem>
                   <a
-                    href="https://github.com/PritishBudhiraja"
+                    href={SOCIAL_LINKS.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex items-center justify-center w-12 h-12 rounded-full bg-muted hover:bg-primary/10 transition-colors duration-300"
@@ -93,7 +94,7 @@ export default function Hero() {
                 </StaggerItem>
                 <StaggerItem>
                   <a
-                    href="mailto:pritish.budhiraja@gmail.com"
+                    href={`mailto:${SOCIAL_LINKS.email}`}
                     className="group flex items-center justify-center w-12 h-12 rounded-full bg-muted hover:bg-primary/10 transition-colors duration-300"
                     aria-label="Email"
                   >
