@@ -75,7 +75,7 @@ export function OriginButton({
           y: "-50%",
         }}
       />
-      <span className="relative z-10 flex items-center gap-2">{children}</span>
+      <span className="relative z-10 flex items-center gap-2 whitespace-nowrap">{children}</span>
     </>
   )
 
@@ -185,7 +185,7 @@ export function OriginButtonOutline({
       />
       <span
         className={cn(
-          "relative z-10 flex items-center gap-2 transition-colors duration-200",
+          "relative z-10 flex items-center gap-2 whitespace-nowrap transition-colors duration-200",
           isHovered ? "text-primary-foreground" : "text-foreground",
         )}
       >
