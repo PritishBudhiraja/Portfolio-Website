@@ -170,4 +170,4 @@ function useToast() {
   }
 }
 
-export { useToast }
+export { toast, useToast }

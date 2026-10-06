@@ -1,15 +1,19 @@
 "use client"
 
 import Lenis from "lenis"
-import { useEffect, useRef } from "react"
+import { useEffect } from "react"
+
+declare global {
+  interface Window {
+    __lenis?: Lenis
+  }
+}
 
 interface SmoothScrollProviderProps {
   children: React.ReactNode
 }
 
 export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
-  const lenisRef = useRef<Lenis | null>(null)
-
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -20,7 +24,7 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       touchMultiplier: 2,
     })
 
-    lenisRef.current = lenis
+    window.__lenis = lenis
 
     function raf(time: number) {
       lenis.raf(time)
@@ -30,6 +34,7 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     requestAnimationFrame(raf)
 
     return () => {
+      window.__lenis = undefined
       lenis.destroy()
     }
   }, [])

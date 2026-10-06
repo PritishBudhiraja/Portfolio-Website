@@ -36,17 +36,14 @@ export function ThemeToggle() {
         isDark ? "to-light" : "to-dark",
       )
 
-      // Start the view transition
-      const transition = document.startViewTransition(async () => {
-        setTheme(newTheme)
-        // Small delay to ensure theme class is applied
-        await new Promise((resolve) => setTimeout(resolve, 0))
-      })
-
       try {
+        const transition = document.startViewTransition(async () => {
+          setTheme(newTheme)
+          await new Promise((resolve) => setTimeout(resolve, 0))
+        })
+
         await transition.ready
 
-        // Animate the clip-path on the new view
         document.documentElement.animate(
           {
             clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`],
@@ -59,6 +56,8 @@ export function ThemeToggle() {
         )
 
         await transition.finished
+      } catch {
+        setTheme(newTheme)
       } finally {
         document.documentElement.removeAttribute("data-theme-transition")
       }
@@ -72,7 +71,7 @@ export function ThemeToggle() {
     return (
       <button
         type="button"
-        className="relative h-10 w-10 rounded-full bg-muted/50 flex items-center justify-center"
+        className="relative h-8 w-8 rounded-md bg-muted/50 flex items-center justify-center"
       >
         <span className="sr-only">Toggle theme</span>
       </button>
@@ -85,7 +84,7 @@ export function ThemeToggle() {
     <motion.button
       ref={buttonRef}
       type="button"
-      className="relative h-10 w-10 rounded-full bg-muted/50 hover:bg-muted flex items-center justify-center overflow-hidden"
+      className="relative h-8 w-8 rounded-md bg-muted/50 hover:bg-muted flex items-center justify-center overflow-hidden"
       onClick={toggleTheme}
       aria-label="Toggle Theme"
       whileHover={{ scale: 1.05 }}
@@ -100,7 +99,7 @@ export function ThemeToggle() {
             exit={{ y: 30, opacity: 0, rotate: 90 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
-            <Moon className="h-5 w-5 text-foreground" />
+            <Moon className="h-4 w-4 text-foreground" />
           </motion.div>
         ) : (
           <motion.div
@@ -110,7 +109,7 @@ export function ThemeToggle() {
             exit={{ y: -30, opacity: 0, rotate: -90 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
-            <Sun className="h-5 w-5 text-foreground" />
+            <Sun className="h-4 w-4 text-foreground" />
           </motion.div>
         )}
       </AnimatePresence>

@@ -9,7 +9,7 @@ export function ResumeRichText({ parts }: { parts: TextPart[] }) {
         }
         if ("bold" in part) {
           return (
-            <strong key={i} className="font-semibold text-[var(--resume-text)]">
+            <strong key={i} className="font-semibold text-[var(--resume-text,var(--foreground))]">
               {part.bold}
             </strong>
           )
@@ -27,7 +27,7 @@ export function ResumeRichText({ parts }: { parts: TextPart[] }) {
             href={part.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[var(--resume-link)] underline-offset-2 hover:underline"
+            className="text-[var(--resume-link,var(--foreground))] underline-offset-2 hover:underline"
           >
             {part.link}
           </a>

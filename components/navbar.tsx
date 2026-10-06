@@ -1,169 +1,127 @@
 "use client"
 
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
+import { type ReactNode, useEffect, useState } from "react"
+import { BrandMark } from "@/components/brand-mark"
+import { CommandMenu } from "@/components/command-menu"
+import { ThemeToggle } from "@/components/theme-toggle"
 import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
-import { ThemeToggle } from "./theme-toggle"
+import { scrollToHash } from "@/lib/utils"
 
 const navItems = [
-  { name: "Home", href: "/#home" },
   { name: "About", href: "/about" },
   { name: "Work", href: "/#work" },
   { name: "Contact", href: "/#contact" },
   { name: "Resume", href: "/resume" },
 ]
 
+function NavItem({
+  href,
+  className,
+  children,
+  onClick,
+}: {
+  href: string
+  className: string
+  children: ReactNode
+  onClick?: () => void
+}) {
+  const isHash = href.includes("#")
+  const prefetch = href === "/about" || href === "/resume" ? true : undefined
+
+  if (isHash) {
+    return (
+      <a
+        href={href}
+        className={className}
+        onClick={(event) => {
+          if (window.location.pathname === "/" && scrollToHash(href)) {
+            event.preventDefault()
+          }
+          onClick?.()
+        }}
+      >
+        {children}
+      </a>
+    )
+  }
+
+  return (
+    <Link href={href} prefetch={prefetch} className={className} onClick={onClick}>
+      {children}
+    </Link>
+  )
+}
+
 export default function Navbar() {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  const { scrollY } = useScroll()
 
   useEffect(() => {
     router.prefetch("/about")
     router.prefetch("/resume")
   }, [router])
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    setScrolled(latest > 50)
-  })
-
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden"
-    } else {
-      document.body.style.overflow = "unset"
-    }
+    document.body.style.overflow = isOpen ? "hidden" : "unset"
     return () => {
       document.body.style.overflow = "unset"
     }
   }, [isOpen])
 
   return (
-    <motion.header
-      initial={{ y: -16, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-      className={cn(
-        "fixed top-0 w-full z-50 transition-all duration-500",
-        scrolled
-          ? "bg-background/80 backdrop-blur-xl shadow-sm border-b border-border/50"
-          : "bg-transparent",
-      )}
-    >
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <motion.a
-          href="/"
-          className="text-2xl font-display font-bold"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          Pritish <span className="text-primary">Budhiraja</span>
-        </motion.a>
+    <header className="sticky top-0 z-50 border-b border-dashed border-border bg-background/80 backdrop-blur-xl">
+      <div className="flex h-12 items-center justify-between px-4 sm:px-6">
+        <Link href="/" className="flex items-center gap-2" aria-label="Home">
+          <BrandMark />
+          <span className="text-sm font-medium">Pritish</span>
+        </Link>
 
-        <nav className="hidden md:flex items-center space-x-1">
-          {navItems.map((item, index) => (
-            <motion.div
+        <nav className="hidden items-center gap-1 md:flex">
+          {navItems.map((item) => (
+            <NavItem
               key={item.name}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 + index * 0.05 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              href={item.href}
+              className="px-2.5 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
-              <Link
-                href={item.href}
-                prefetch={item.href === "/about" || item.href === "/resume" ? true : undefined}
-                className="relative px-4 py-2 text-foreground/70 hover:text-foreground transition-colors duration-300 text-sm font-medium"
-              >
-                {item.name}
-              </Link>
-            </motion.div>
+              {item.name}
+            </NavItem>
           ))}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            <ThemeToggle />
-          </motion.div>
+          <CommandMenu />
+          <ThemeToggle />
         </nav>
 
-        <div className="flex items-center md:hidden space-x-4">
+        <div className="flex items-center gap-1 md:hidden">
+          <CommandMenu />
           <ThemeToggle />
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle Menu"
-            className="relative z-50"
+            onClick={() => setIsOpen((open) => !open)}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            className="h-8 w-8"
           >
-            <AnimatePresence mode="wait">
-              {isOpen ? (
-                <motion.div
-                  key="close"
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <X className="h-6 w-6" />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="menu"
-                  initial={{ rotate: 90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: -90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Menu className="h-6 w-6" />
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </Button>
         </div>
       </div>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "100vh" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="md:hidden fixed inset-0 top-0 bg-background/98 backdrop-blur-xl z-40"
-          >
-            <nav className="container mx-auto px-4 pt-24 flex flex-col items-center justify-center h-full space-y-2">
-              {navItems.map((item, index) => (
-                <motion.div
-                  key={item.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 20 }}
-                  transition={{ duration: 0.3, delay: 0.1 + index * 0.05 }}
-                  whileHover={{ scale: 1.05, x: 10 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Link
-                    href={item.href}
-                    prefetch={item.href === "/about" || item.href === "/resume" ? true : undefined}
-                    className="text-3xl font-display font-bold text-foreground/80 hover:text-primary transition-colors py-4 block"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                </motion.div>
-              ))}
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.header>
+      {isOpen ? (
+        <nav className="border-t border-dashed border-border px-4 py-3 md:hidden">
+          {navItems.map((item) => (
+            <NavItem
+              key={item.name}
+              href={item.href}
+              className="block py-2 text-sm"
+              onClick={() => setIsOpen(false)}
+            >
+              {item.name}
+            </NavItem>
+          ))}
+        </nav>
+      ) : null}
+    </header>
   )
 }

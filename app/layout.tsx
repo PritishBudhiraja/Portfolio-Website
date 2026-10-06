@@ -1,5 +1,7 @@
+import { GeistMono } from "geist/font/mono"
+import { GeistSans } from "geist/font/sans"
 import type { Metadata } from "next"
-import { Instrument_Sans, Inter, Source_Serif_4, Work_Sans } from "next/font/google"
+import { Source_Serif_4, Work_Sans } from "next/font/google"
 import type React from "react"
 import "./globals.css"
 import { JsonLd } from "@/components/json-ld"
@@ -16,17 +18,6 @@ import {
   SITE_TITLE,
   SITE_URL,
 } from "@/lib/site-config"
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-})
-
-const instrumentSans = Instrument_Sans({
-  subsets: ["latin"],
-  variable: "--font-instrument",
-  weight: ["400", "500", "600", "700"],
-})
 
 const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
@@ -87,8 +78,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body
-        className={`${inter.variable} ${instrumentSans.variable} ${sourceSerif.variable} ${workSans.variable} font-sans`}
+        className={`${GeistSans.variable} ${GeistMono.variable} ${sourceSerif.variable} ${workSans.variable} font-sans`}
       >
         <JsonLd data={getPersonJsonLd()} />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
