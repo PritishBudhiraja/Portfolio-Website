@@ -1,6 +1,6 @@
 import { resumeMeta } from "@/lib/resume-data"
 
-const RESUME_FILE_ID = "1NnYaBnWxVpimxp0Ntb3NqtHEo-Tmh9xr"
+const RESUME_FILE_ID = "1yCFxWXee8UzSn1AOz9hsU1QbKYqxC9Jq"
 
 export const RESUME_DOWNLOAD_URL = `https://drive.google.com/uc?export=download&id=${RESUME_FILE_ID}`
 
