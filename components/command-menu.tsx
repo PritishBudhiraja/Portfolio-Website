@@ -1,11 +1,11 @@
 "use client"
 
 import { Command } from "cmdk"
-import { FileText, FolderGit2, Mail, Search, User } from "lucide-react"
+import { FileDown, FileText, FolderGit2, Mail, Search, User } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { GithubIcon, LinkedinIcon } from "@/components/icons"
-import { SOCIAL_LINKS } from "@/lib/site-config"
+import { RESUME_SHARE_URL, SOCIAL_LINKS } from "@/lib/site-config"
 import { scrollToHash } from "@/lib/utils"
 
 const pages = [
@@ -18,6 +18,7 @@ const pages = [
 ]
 
 const links = [
+  { name: "Resume PDF", href: RESUME_SHARE_URL, icon: FileDown },
   { name: "GitHub", href: SOCIAL_LINKS.github, icon: GithubIcon },
   { name: "LinkedIn", href: SOCIAL_LINKS.linkedin, icon: LinkedinIcon },
   { name: "Email", href: `mailto:${SOCIAL_LINKS.email}`, icon: Mail },

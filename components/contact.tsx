@@ -1,11 +1,16 @@
 "use client"
 
-import { Mail } from "lucide-react"
+import { FileDown, Mail } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 import { GithubIcon, LinkedinIcon } from "@/components/icons"
 import { MarginNote } from "@/components/margin-note"
-import { getSpotifyPlaylistId, SOCIAL_LINKS, SPOTIFY_PLAYLIST_URL } from "@/lib/site-config"
+import {
+  getSpotifyPlaylistId,
+  RESUME_SHARE_URL,
+  SOCIAL_LINKS,
+  SPOTIFY_PLAYLIST_URL,
+} from "@/lib/site-config"
 
 function ListeningAside() {
   const playlistId = getSpotifyPlaylistId(SPOTIFY_PLAYLIST_URL)
@@ -90,6 +95,15 @@ export default function Contact() {
         >
           <GithubIcon className="h-3.5 w-3.5" />
           GitHub
+        </a>
+        <a
+          href={RESUME_SHARE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex h-9 items-center gap-1.5 rounded-md border border-border px-3 text-sm hover:bg-muted"
+        >
+          <FileDown className="h-3.5 w-3.5" />
+          Resume PDF
         </a>
       </div>
       {hasPlaylist ? <ListeningAside /> : null}

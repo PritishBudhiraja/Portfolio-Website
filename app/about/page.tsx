@@ -6,7 +6,13 @@ import Navbar from "@/components/navbar"
 import { Hatch, SiteFrame } from "@/components/site-frame"
 import { OriginButton, OriginButtonOutline } from "@/components/ui/origin-button"
 import { getBreadcrumbJsonLd } from "@/lib/json-ld"
-import { SITE_DESCRIPTION, SITE_JOB_TITLE, SITE_NAME, SITE_OG_IMAGES } from "@/lib/site-config"
+import {
+  RESUME_SHARE_URL,
+  SITE_DESCRIPTION,
+  SITE_JOB_TITLE,
+  SITE_NAME,
+  SITE_OG_IMAGES,
+} from "@/lib/site-config"
 
 export const metadata: Metadata = {
   title: { absolute: `About ${SITE_NAME} | ${SITE_JOB_TITLE}` },
@@ -212,6 +218,14 @@ export default function AboutPage() {
             <OriginButton href="/resume" className="h-10 px-5 text-sm">
               View resume
             </OriginButton>
+            <OriginButtonOutline
+              href={RESUME_SHARE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="h-10 px-5 text-sm"
+            >
+              Download PDF
+            </OriginButtonOutline>
             <OriginButtonOutline href="/#contact" className="h-10 px-5 text-sm">
               Get in touch
             </OriginButtonOutline>

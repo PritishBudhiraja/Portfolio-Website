@@ -58,36 +58,40 @@ export const professionalExperience: ResumeCompany[] = [
         period: "August 2025 – Present",
         bullets: [
           [
-            "Owned the frontend architecture end-to-end for the platform — from feature-sliced module design to the build and deployment pipeline (",
-            { bold: "Vite" },
-            ", ",
-            { bold: "Docker" },
-            ", ",
-            { bold: "Kubernetes/GKE" },
-            ") — enabling scalable, reliable delivery as the product grew.",
+            "Owned the ",
+            { bold: "React" },
+            " and ",
+            { bold: "TypeScript" },
+            " frontend for TestZeus's AI testing product: how screens are structured, a shared design system so UI stays consistent, and automated checks that cleared ~500 structural issues and now block messy changes from shipping.",
           ],
           [
-            "Standardized code structure and formatting repo-wide using ",
-            { bold: "Biome" },
-            ", improving consistency, review quality, and maintainability across the codebase.",
+            "Made the product open faster by cutting the first-load JavaScript and CSS from ",
+            { bold: "3.65 MB to 644 KB (82% smaller)" },
+            ", then to ",
+            { bold: "338.5 KB" },
+            ", and added build budgets so that size cannot creep back unnoticed.",
           ],
           [
-            "Built the end-to-end ",
-            { bold: "Teach Agent" },
-            " workflow, using an open-source browser tool to record browser sessions and convert them into AI-generated Gherkin scenarios and executable Python tests through asynchronous artifact processing and progressive generation.",
+            "Built in-product browser recording: users record a session on a test, the platform turns it into readable scenarios and runnable tests in the background, and other runs wait until that work is finished.",
           ],
           [
-            "Architected the ",
-            { bold: "Composio" },
-            "-based integration service to be extensible by design, enabling 15+ connected-app integrations across source control and enterprise tools with new connectors added easily; powers the end-to-end flow from account connection to knowledge-base creation to AI-generated test cases.",
+            "Built the integration layer so teams can connect tools (issue trackers, source control, and similar apps) without mixing one customer's data with another's, and so \"connected\" accounts that have actually expired get flagged instead of failing silently.",
           ],
           [
-            "Implemented usage-based billing and quota enforcement using ",
-            { bold: "Flexprice and Redis" },
-            ", adding real-time event monitoring and per-user usage-metric tracking alongside pre-execution validation, cancelled-run slot recovery, and quota-exhaustion feedback.",
+            "Shipped nested folders across seven major lists — tests, runs, knowledge bases, and related pages — in both the interface and the API, so large workspaces stay organized the same way everywhere.",
           ],
           [
-            "Strengthened platform security and reliability through JWT revocation, tenant-derived authentication, login audit trails, deployment health checks, stale-chunk recovery, and Sentry-based observability — reducing unauthorized access and incident response time.",
+            "Closed gaps in usage billing and quotas so limits apply when a connection is actually in use, exhausted capacity recovers correctly, and the product shows a clear error instead of failing with no explanation.",
+          ],
+          [
+            "Set up ",
+            { bold: "Sentry" },
+            " across TestZeus services so error reports come only from real deployed environments, not laptops or internal clusters — production incidents stand out instead of getting buried in noise.",
+          ],
+          [
+            "Owned backend work on the ",
+            { bold: "Node.js / PocketBase" },
+            " gateway: faster list APIs under load (skip expensive full counts, cached totals, database indexes), cheaper status checks, and clear errors the product can show — so the app is not sitting on a slow or leaking API.",
           ],
         ],
       },
@@ -198,24 +202,30 @@ export const earlyExperience: ResumeCompany[] = [
 export const skillGroups: SkillGroup[] = [
   {
     label: "Languages",
-    items: ["TypeScript", "JavaScript", "ReScript", "Python", "SQL"],
+    items: ["TypeScript", "JavaScript", "HTML", "CSS", "ReScript", "Python", "SQL"],
   },
   {
     label: "Frontend engineering",
-    items: [
-      "React",
-      "Component architecture",
-      "State management",
-      "Bundle / performance optimization",
-    ],
+    items: ["React", "Next.js", "Vite", "Webpack", "Tailwind CSS", "Design systems"],
   },
   {
     label: "Infra & delivery",
-    items: ["Docker", "Kubernetes", "CI/CD (Jenkins)", "AWS (S3/CloudFront)", "Vite", "Webpack"],
+    items: [
+      "Docker",
+      "Kubernetes",
+      "nginx",
+      "CI/CD",
+      "GitHub Actions",
+      "Jenkins",
+      "AWS",
+      "S3",
+      "CloudFront",
+      "Git",
+    ],
   },
   {
     label: "Backend & data",
-    items: ["Node.js", "REST", "FastAPI", "MongoDB", "MySQL", "DynamoDB"],
+    items: ["Node.js", "PocketBase", "Redis", "REST", "Sentry"],
   },
 ]
 

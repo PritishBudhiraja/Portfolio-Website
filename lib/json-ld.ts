@@ -1,5 +1,6 @@
 import { education, resumeMeta } from "@/lib/resume-data"
 import {
+  RESUME_SHARE_URL,
   SITE_DESCRIPTION,
   SITE_IMAGE,
   SITE_JOB_TITLE,
@@ -34,7 +35,7 @@ export function getPersonJsonLd() {
           name: education.school,
           url: education.schoolUrl,
         },
-        sameAs: [resumeMeta.linkedin, resumeMeta.github],
+        sameAs: [resumeMeta.linkedin, resumeMeta.github, RESUME_SHARE_URL],
         knowsAbout: [
           "React",
           "TypeScript",
