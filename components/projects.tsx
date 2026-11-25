@@ -1,14 +1,14 @@
+import { EditorialAnnotation } from "@pritish.budhiraja/ui"
 import { ArrowUpRight } from "lucide-react"
-import { MarginNote } from "@/components/margin-note"
 import { projects } from "@/lib/projects"
 import { SOCIAL_LINKS } from "@/lib/site-config"
 
 export default function Projects() {
   return (
     <section id="work" className="relative scroll-mt-14 px-4 py-8 sm:px-6">
-      <MarginNote side="left" rotate={7} className="top-8">
+      <EditorialAnnotation side="left" rotate={7} className="top-8">
         built, not mocked
-      </MarginNote>
+      </EditorialAnnotation>
       <div className="mb-5 flex items-baseline justify-between gap-3">
         <h2 className="text-lg font-semibold tracking-tight sm:text-xl">
           Projects

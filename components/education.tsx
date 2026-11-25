@@ -1,13 +1,13 @@
+import { EditorialAnnotation } from "@pritish.budhiraja/ui"
 import { CompanyLogo } from "@/components/company-logo"
-import { MarginNote } from "@/components/margin-note"
 import { education } from "@/lib/resume-data"
 
 export function Education() {
   return (
     <section id="education" className="relative scroll-mt-14 px-4 py-8 sm:px-6">
-      <MarginNote side="right" rotate={-6} className="top-8">
+      <EditorialAnnotation side="right" rotate={-6} className="top-8">
         the 9.60
-      </MarginNote>
+      </EditorialAnnotation>
       <h2 className="mb-5 text-lg font-semibold tracking-tight sm:text-xl">Education</h2>
       <div className="flex items-start gap-3">
         <CompanyLogo src={education.logo} className="mt-0.5" />

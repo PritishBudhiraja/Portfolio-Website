@@ -4,11 +4,10 @@ import type { Metadata } from "next"
 import { Source_Serif_4, Work_Sans } from "next/font/google"
 import type React from "react"
 import "./globals.css"
+import { ScrollProgress, Toaster } from "@/components/hatch"
 import { JsonLd } from "@/components/json-ld"
-import { ScrollProgress } from "@/components/scroll-progress"
 import { SmoothScrollProvider } from "@/components/smooth-scroll-provider"
 import { ThemeProvider } from "@/components/theme-provider"
-import { Toaster } from "@/components/ui/toaster"
 import { getPersonJsonLd } from "@/lib/json-ld"
 import {
   SITE_DESCRIPTION,
@@ -77,7 +76,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" data-theme="portfolio" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

@@ -1,5 +1,5 @@
 import { Briefcase, Mail, MapPin, Phone } from "lucide-react"
-import { CopyButton } from "@/components/copy-button"
+import { CopyButton } from "@/components/hatch"
 import { GithubIcon, LinkedinIcon } from "@/components/icons"
 import { LocalTime } from "@/components/local-time"
 import { resumeMeta } from "@/lib/resume-data"

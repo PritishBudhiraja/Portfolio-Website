@@ -1,5 +1,5 @@
 import { ExternalLink, FileDown } from "lucide-react"
-import { OriginButton, OriginButtonOutline } from "@/components/ui/origin-button"
+import { OriginButton, OriginButtonOutline } from "@/components/hatch"
 import { RESUME_DOWNLOAD_URL, RESUME_SHARE_URL } from "@/lib/site-config"
 
 export function ResumeActions() {

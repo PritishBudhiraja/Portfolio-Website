@@ -1,5 +1,6 @@
 "use client"
 
+import { Button } from "@pritish.budhiraja/ui"
 import { Menu, X } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -7,7 +8,6 @@ import { type ReactNode, useEffect, useState } from "react"
 import { BrandMark } from "@/components/brand-mark"
 import { CommandMenu } from "@/components/command-menu"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { Button } from "@/components/ui/button"
 import { scrollToHash } from "@/lib/utils"
 
 const navItems = [

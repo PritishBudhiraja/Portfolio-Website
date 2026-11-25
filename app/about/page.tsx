@@ -1,10 +1,10 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import Footer from "@/components/footer"
+import { OriginButton, OriginButtonOutline } from "@/components/hatch"
 import { JsonLd } from "@/components/json-ld"
 import Navbar from "@/components/navbar"
 import { Hatch, SiteFrame } from "@/components/site-frame"
-import { OriginButton, OriginButtonOutline } from "@/components/ui/origin-button"
 import { getBreadcrumbJsonLd } from "@/lib/json-ld"
 import {
   RESUME_SHARE_URL,

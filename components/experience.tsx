@@ -1,6 +1,6 @@
+import { EditorialAnnotation } from "@pritish.budhiraja/ui"
 import { ChevronDown } from "lucide-react"
 import { CompanyLogo } from "@/components/company-logo"
-import { MarginNote } from "@/components/margin-note"
 import { ResumeRichText } from "@/components/resume/resume-rich-text"
 import {
   earlyExperience,
@@ -89,9 +89,9 @@ export function Experience() {
 
   return (
     <section id="experience" className="relative scroll-mt-14 px-4 py-8 sm:px-6">
-      <MarginNote side="left" rotate={-7}>
+      <EditorialAnnotation side="left" rotate={-7}>
         currently here
-      </MarginNote>
+      </EditorialAnnotation>
       <h2 className="mb-1 text-lg font-semibold tracking-tight sm:text-xl">Experience</h2>
       <div className="divide-y divide-dashed divide-border">
         {companies.map((company) => (

@@ -1,10 +1,10 @@
 "use client"
 
+import { Button, EditorialAnnotation } from "@pritish.budhiraja/ui"
 import { FileDown, Mail } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 import { GithubIcon, LinkedinIcon } from "@/components/icons"
-import { MarginNote } from "@/components/margin-note"
 import {
   getSpotifyPlaylistId,
   RESUME_SHARE_URL,
@@ -31,10 +31,7 @@ function ListeningAside() {
     <aside id="listening" className="mt-6">
       <p className="mb-2 text-xs text-muted-foreground">Now playing</p>
       {mounted ? (
-        <div
-          className="spotify-embed"
-          style={{ backgroundColor: isLight ? "#ffffff" : "#121212" }}
-        >
+        <div className="spotify-embed" style={{ backgroundColor: isLight ? "#ffffff" : "#121212" }}>
           <iframe
             key={src}
             title="Overthinking Thoughts on Spotify"
@@ -62,49 +59,39 @@ export default function Contact() {
 
   return (
     <section id="contact" className="relative scroll-mt-14 px-4 py-8 sm:px-6">
-      <MarginNote side="right" rotate={6} className="top-auto bottom-10">
+      <EditorialAnnotation side="right" rotate={6} className="top-auto bottom-10">
         say hello
-      </MarginNote>
+      </EditorialAnnotation>
       <h2 className="mb-3 text-lg font-semibold tracking-tight sm:text-xl">Get in touch</h2>
       <p className="text-sm leading-relaxed text-muted-foreground">
         Work, a question, or just hello — I read everything. Open to roles and interesting frontend
         systems problems.
       </p>
       <div className="mt-4 flex flex-wrap gap-2">
-        <a
-          href={`mailto:${SOCIAL_LINKS.email}`}
-          className="inline-flex h-9 items-center gap-1.5 rounded-md bg-primary px-3 text-sm font-medium text-primary-foreground"
-        >
-          <Mail className="h-3.5 w-3.5" />
-          Email
-        </a>
-        <a
-          href={SOCIAL_LINKS.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex h-9 items-center gap-1.5 rounded-md border border-border px-3 text-sm hover:bg-muted"
-        >
-          <LinkedinIcon className="h-3.5 w-3.5" />
-          LinkedIn
-        </a>
-        <a
-          href={SOCIAL_LINKS.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex h-9 items-center gap-1.5 rounded-md border border-border px-3 text-sm hover:bg-muted"
-        >
-          <GithubIcon className="h-3.5 w-3.5" />
-          GitHub
-        </a>
-        <a
-          href={RESUME_SHARE_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex h-9 items-center gap-1.5 rounded-md border border-border px-3 text-sm hover:bg-muted"
-        >
-          <FileDown className="h-3.5 w-3.5" />
-          Resume PDF
-        </a>
+        <Button asChild size="sm">
+          <a href={`mailto:${SOCIAL_LINKS.email}`}>
+            <Mail className="h-3.5 w-3.5" />
+            Email
+          </a>
+        </Button>
+        <Button asChild variant="outline" size="sm">
+          <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer">
+            <LinkedinIcon className="h-3.5 w-3.5" />
+            LinkedIn
+          </a>
+        </Button>
+        <Button asChild variant="outline" size="sm">
+          <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer">
+            <GithubIcon className="h-3.5 w-3.5" />
+            GitHub
+          </a>
+        </Button>
+        <Button asChild variant="outline" size="sm">
+          <a href={RESUME_SHARE_URL} target="_blank" rel="noopener noreferrer">
+            <FileDown className="h-3.5 w-3.5" />
+            Resume PDF
+          </a>
+        </Button>
       </div>
       {hasPlaylist ? <ListeningAside /> : null}
     </section>

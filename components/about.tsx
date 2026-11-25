@@ -1,5 +1,5 @@
+import { EditorialAnnotation } from "@pritish.budhiraja/ui"
 import Link from "next/link"
-import { MarginNote } from "@/components/margin-note"
 
 function greetingInKolkata() {
   const hour = Number(
@@ -18,9 +18,9 @@ function greetingInKolkata() {
 export default function About() {
   return (
     <section id="about" className="relative scroll-mt-14 px-4 py-8 sm:px-6">
-      <MarginNote side="left" rotate={-10} className="top-4">
+      <EditorialAnnotation side="left" rotate={-10} className="top-4">
         the short version
-      </MarginNote>
+      </EditorialAnnotation>
       <h2 className="mb-3 font-serif text-2xl italic tracking-tight">{greetingInKolkata()}</h2>
       <ul className="space-y-2.5 text-sm leading-relaxed text-muted-foreground">
         <li>
