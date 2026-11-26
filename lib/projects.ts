@@ -67,6 +67,18 @@ export const projects: Project[] = [
     ],
   },
   {
+    title: "Hatch design system",
+    context: "Personal · npm",
+    summary:
+      "The React 19 component library this site is built with — accessible Radix components, Tailwind CSS v4 tokens, light and dark themes, and axe checks behind a 100% coverage gate. Released from CI with npm trusted publishing.",
+    tags: ["React 19", "Radix UI", "Tailwind CSS v4", "Design tokens"],
+    links: [
+      { label: "Docs", href: "https://ui.pritishbudhiraja.com" },
+      { label: "npm", href: "https://www.npmjs.com/package/@pritish.budhiraja/ui" },
+      { label: "GitHub", href: "https://github.com/PritishBudhiraja/pb-ui" },
+    ],
+  },
+  {
     title: "URL shortener",
     context: "Personal",
     summary:
