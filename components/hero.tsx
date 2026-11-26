@@ -1,3 +1,4 @@
+import { EditorialHeading } from "@pritish.budhiraja/ui"
 import { Briefcase, Mail, MapPin, Phone } from "lucide-react"
 import { CopyButton } from "@/components/hatch"
 import { GithubIcon, LinkedinIcon } from "@/components/icons"
@@ -21,7 +22,7 @@ export default function Hero() {
           className="h-20 w-20 shrink-0 rounded-full border border-border object-cover object-top sm:h-24 sm:w-24"
         />
         <div className="min-w-0 pt-1">
-          <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">{resumeMeta.name}</h1>
+          <EditorialHeading as="h1">{resumeMeta.name}</EditorialHeading>
           <p className="mt-1 text-sm text-muted-foreground">
             I build the frontend systems behind AI testing and payments.
           </p>

@@ -1,4 +1,4 @@
-import { EditorialAnnotation } from "@pritish.budhiraja/ui"
+import { EditorialAnnotation, EditorialHeading } from "@pritish.budhiraja/ui"
 import { CompanyLogo } from "@/components/company-logo"
 import { education } from "@/lib/resume-data"
 
@@ -8,7 +8,7 @@ export function Education() {
       <EditorialAnnotation side="right" rotate={-6} className="top-8">
         the 9.60
       </EditorialAnnotation>
-      <h2 className="mb-5 text-lg font-semibold tracking-tight sm:text-xl">Education</h2>
+      <EditorialHeading className="mb-5 text-2xl">Education</EditorialHeading>
       <div className="flex items-start gap-3">
         <CompanyLogo src={education.logo} className="mt-0.5" />
         <div className="min-w-0">

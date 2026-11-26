@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, EditorialAnnotation } from "@pritish.budhiraja/ui"
+import { Button, EditorialAnnotation, EditorialHeading } from "@pritish.budhiraja/ui"
 import { FileDown, Mail } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
@@ -62,7 +62,7 @@ export default function Contact() {
       <EditorialAnnotation side="right" rotate={6} className="top-auto bottom-10">
         say hello
       </EditorialAnnotation>
-      <h2 className="mb-3 text-lg font-semibold tracking-tight sm:text-xl">Get in touch</h2>
+      <EditorialHeading className="mb-3 text-2xl">Get in touch</EditorialHeading>
       <p className="text-sm leading-relaxed text-muted-foreground">
         Work, a question, or just hello — I read everything. Open to roles and interesting frontend
         systems problems.

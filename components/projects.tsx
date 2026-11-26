@@ -1,4 +1,4 @@
-import { EditorialAnnotation } from "@pritish.budhiraja/ui"
+import { EditorialAnnotation, EditorialHeading } from "@pritish.budhiraja/ui"
 import { ArrowUpRight } from "lucide-react"
 import { projects } from "@/lib/projects"
 import { SOCIAL_LINKS } from "@/lib/site-config"
@@ -10,12 +10,12 @@ export default function Projects() {
         built, not mocked
       </EditorialAnnotation>
       <div className="mb-5 flex items-baseline justify-between gap-3">
-        <h2 className="text-lg font-semibold tracking-tight sm:text-xl">
+        <EditorialHeading className="text-2xl">
           Projects
-          <span className="ml-1.5 font-mono text-sm font-normal text-muted-foreground">
+          <span className="ml-1.5 font-mono text-sm font-normal not-italic text-muted-foreground">
             ({projects.length})
           </span>
-        </h2>
+        </EditorialHeading>
         <a
           href={SOCIAL_LINKS.github}
           target="_blank"

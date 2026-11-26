@@ -1,4 +1,4 @@
-import { EditorialAnnotation } from "@pritish.budhiraja/ui"
+import { EditorialAnnotation, EditorialHeading } from "@pritish.budhiraja/ui"
 import { ChevronDown } from "lucide-react"
 import { CompanyLogo } from "@/components/company-logo"
 import { ResumeRichText } from "@/components/resume/resume-rich-text"
@@ -92,7 +92,7 @@ export function Experience() {
       <EditorialAnnotation side="left" rotate={-7}>
         currently here
       </EditorialAnnotation>
-      <h2 className="mb-1 text-lg font-semibold tracking-tight sm:text-xl">Experience</h2>
+      <EditorialHeading className="mb-1 text-2xl">Experience</EditorialHeading>
       <div className="divide-y divide-dashed divide-border">
         {companies.map((company) => (
           <ExperienceItem key={company.company} company={company} />

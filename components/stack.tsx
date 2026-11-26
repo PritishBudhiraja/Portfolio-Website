@@ -1,4 +1,4 @@
-import { EditorialAnnotation } from "@pritish.budhiraja/ui"
+import { EditorialAnnotation, EditorialHeading } from "@pritish.budhiraja/ui"
 import { skillGroups } from "@/lib/resume-data"
 
 export function Stack() {
@@ -7,7 +7,7 @@ export function Stack() {
       <EditorialAnnotation side="right" rotate={8} className="top-10">
         what I reach for
       </EditorialAnnotation>
-      <h2 className="mb-5 text-lg font-semibold tracking-tight sm:text-xl">Stack</h2>
+      <EditorialHeading className="mb-5 text-2xl">Stack</EditorialHeading>
       <div className="divide-y divide-dashed divide-border border-y border-dashed border-border">
         {skillGroups.map((group, index) => (
           <div

@@ -1,3 +1,4 @@
+import { EditorialHeading } from "@pritish.budhiraja/ui"
 import type { Metadata } from "next"
 import Link from "next/link"
 import Footer from "@/components/footer"
@@ -45,9 +46,7 @@ export default function AboutPage() {
         <article className="px-4 py-8 sm:px-6">
           <header className="mb-8">
             <p className="mb-2 font-mono text-xs text-muted-foreground">About</p>
-            <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-              About Pritish Budhiraja
-            </h1>
+            <EditorialHeading as="h1">About Pritish Budhiraja</EditorialHeading>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               Senior Software Engineer in Bangalore. React, TypeScript, AI testing, payments, and
               the cloud path that ships them.
@@ -89,7 +88,7 @@ export default function AboutPage() {
         <Hatch />
 
         <section className="space-y-4 px-4 py-8 text-sm leading-relaxed text-muted-foreground sm:px-6">
-          <h2 className="text-lg font-semibold text-foreground">Currently at TestZeus</h2>
+          <EditorialHeading className="text-2xl">Currently at TestZeus</EditorialHeading>
           <p>
             At TestZeus I own the frontend architecture end-to-end: feature-sliced modules, the Vite
             build, Docker, and Kubernetes on GKE. The job is making the codebase something a team
@@ -116,7 +115,7 @@ export default function AboutPage() {
         <Hatch />
 
         <section className="space-y-4 px-4 py-8 text-sm leading-relaxed text-muted-foreground sm:px-6">
-          <h2 className="text-lg font-semibold text-foreground">Previously at Juspay</h2>
+          <EditorialHeading className="text-2xl">Previously at Juspay</EditorialHeading>
           <p>
             I joined Juspay as an Associate Software Development Engineer in late 2022 and left as
             an SDE I in 2025. Most of that time was{" "}
@@ -152,9 +151,9 @@ export default function AboutPage() {
         <Hatch />
 
         <section className="space-y-4 px-4 py-8 text-sm leading-relaxed text-muted-foreground sm:px-6">
-          <h2 className="text-lg font-semibold text-foreground">
+          <EditorialHeading className="text-2xl">
             Frontend, cloud, and the path between them
-          </h2>
+          </EditorialHeading>
           <p>
             The work I like most sits at the boundary. React and TypeScript for the product. AWS,
             Docker, and Kubernetes for how it ships. Redis when usage or rate limits have to be
@@ -172,7 +171,7 @@ export default function AboutPage() {
         <Hatch />
 
         <section className="space-y-4 px-4 py-8 text-sm leading-relaxed text-muted-foreground sm:px-6">
-          <h2 className="text-lg font-semibold text-foreground">Open source</h2>
+          <EditorialHeading className="text-2xl">Open source</EditorialHeading>
           <p>
             At Juspay I worked on the Hyperswitch Web SDK in the open, and on{" "}
             <a
@@ -191,7 +190,7 @@ export default function AboutPage() {
         <Hatch />
 
         <section className="space-y-4 px-4 py-8 text-sm leading-relaxed text-muted-foreground sm:px-6">
-          <h2 className="text-lg font-semibold text-foreground">Education</h2>
+          <EditorialHeading className="text-2xl">Education</EditorialHeading>
           <p>
             I studied Computer Science Engineering at Kalinga Institute of Industrial Technology
             (KIIT) in Bhubaneswar from 2018 to 2022, graduating with a 9.60 CGPA. Bangalore is home
@@ -202,7 +201,7 @@ export default function AboutPage() {
         <Hatch />
 
         <section className="px-4 py-8 sm:px-6">
-          <h2 className="mb-3 text-lg font-semibold">Get in touch</h2>
+          <EditorialHeading className="mb-3 text-2xl">Get in touch</EditorialHeading>
           <p className="text-sm leading-relaxed text-muted-foreground">
             If you want the compressed version, the{" "}
             <Link

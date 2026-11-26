@@ -1,4 +1,4 @@
-import { EditorialAnnotation } from "@pritish.budhiraja/ui"
+import { EditorialAnnotation, EditorialHeading } from "@pritish.budhiraja/ui"
 import Link from "next/link"
 
 function greetingInKolkata() {
@@ -21,7 +21,7 @@ export default function About() {
       <EditorialAnnotation side="left" rotate={-10} className="top-4">
         the short version
       </EditorialAnnotation>
-      <h2 className="mb-3 font-serif text-2xl italic tracking-tight">{greetingInKolkata()}</h2>
+      <EditorialHeading className="mb-3 text-2xl">{greetingInKolkata()}</EditorialHeading>
       <ul className="space-y-2.5 text-sm leading-relaxed text-muted-foreground">
         <li>
           I&apos;m Pritish Budhiraja — a Senior Software Engineer who likes owning the path from UI

@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "@pritish.budhiraja/ui/tailwind.css";
+@import "../node_modules/@pritish.budhiraja/ui/dist/tailwind.css";
 
 @theme inline {
   --font-resume: var(--font-work-sans), system-ui, sans-serif;
